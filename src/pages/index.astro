@@ -1,6 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
-import img from '~/assets/undraw_dog_c7i6.svg';
+import img from '~/assets/cat.svg';
 import { SiteDescription, SiteTitle } from '~/config';
 import MarkdownLayout from '~/layouts/MarkdownLayout.astro';
 ---
@@ -14,35 +14,30 @@ import MarkdownLayout from '~/layouts/MarkdownLayout.astro';
 	<div class="flex flex-col items-center gap-4 xl:flex-row">
 		<Picture class="lg:max-w-md" src={img} formats={['avif', 'webp']} alt="a dog" loading="eager" />
 		<div>
-			<h1>Hello there! I am Ladit👋</h1>
+			<h1>你好，我是 Midasevil 👋</h1>
 			<p>
-				This is a blog template built with <a href="https://astro.build">Astro</a>. The theme
-				originates from <a href="https://github.com/varkai/hugo-theme-zozo">hugo-theme-zozo</a>.
-				Check out <a href="/posts/getting-started">the docs</a> to get started. Here are some
-				features:
+				欢迎来到我的个人博客。这里是我践行 "Learn in Public" 的空间 —— 我会持续分享对人工智能、科技发展以及生活的思考。
+				通过公开写作和分享，记录学习过程中的每一步，包括成功与挫折。我相信，真实的学习轨迹不仅能够倒逼自己成长，
+				也能为同路人提供参考。
 			</p>
 			<ul class="list-disc">
 				<li>
-					Fast and light weight. Lighthouse 4 * 100/100 on desktop. 1 point decreased on mobile.
+					<strong>AI 探索</strong> - 深入解读人工智能发展动态，分享AI技术应用心得
 				</li>
 				<li>
-					<a href="https://astro.build">Astro 4</a> with no other UI frameworks integrated for better
-					performance
+					<strong>科技观察</strong> - 关注前沿科技趋势，探讨技术对未来生活的影响
 				</li>
 				<li>
-					mobile-friendly responsive design with <a href="https://tailwindcss.com/">Tailwind CSS</a>
+					<strong>生活随想</strong> - 记录日常思考，分享个人对生活的理解与感悟
 				</li>
 				<li>
-					Light / dark theme derived from <a href="https://github.com/varkai/hugo-theme-zozo"
-						>hugo-theme-zozo</a
-					>
+					<strong>学习笔记</strong> - 将学习过程中的问题、解决方案和心得及时记录分享，用持续输出促进深度理解
 				</li>
-				<li>Markdown post support with emoji shortcode, katex</li>
-				<li>static search with <a href="https://pagefind.app">Pagefind</a></li>
-				<li>comment system powered by <a href="https://github.com/giscus/giscus">giscus</a></li>
-				<li>SEO-friendly setup with canonical URLs and OpenGraph data</li>
-				<li>RSS / Sitemap.xml / dynamic open graph image generation</li>
 			</ul>
+			<p class="mt-4">
+				在这里，你会看到我实时记录的学习笔记、技术探索和思维碰撞。我坚信，公开学习和持续分享是最好的学习方式。
+				欢迎通过评论系统与我交流，一起在这个快速发展的时代互相学习、共同成长。
+			</p>
 		</div>
 	</div>
 </MarkdownLayout>
