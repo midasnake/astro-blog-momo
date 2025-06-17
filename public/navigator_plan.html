@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"领航员计划"项目启动文档</title>
+    
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Google Fonts for a professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 基本样式与自定义配置 */
+        :root {
+            --bg-light: #ffffff;
+            --text-light: #1f2937; /* gray-800 */
+            --bg-dark: #111827; /* gray-900 */
+            --text-dark: #d1d5db; /* gray-300 */
+            --accent-color: #4f46e5; /* indigo-600 */
+            --border-light: #e5e7eb; /* gray-200 */
+            --border-dark: #374151; /* gray-700 */
+            --card-bg-light: #f9fafb; /* gray-50 */
+            --card-bg-dark: #1f2937; /* gray-800 */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Light Mode */
+        .light body {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+        }
+        .light .bg-card { background-color: var(--card-bg-light); }
+        .light .border-dynamic { border-color: var(--border-light); }
+        .light .text-main { color: var(--text-light); }
+        .light .text-secondary { color: #4b5563; } /* gray-600 */
+
+        /* Dark Mode */
+        .dark body {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+        .dark .bg-card { background-color: var(--card-bg-dark); }
+        .dark .border-dynamic { border-color: var(--border-dark); }
+        .dark .text-main { color: var(--text-dark); }
+        .dark .text-secondary { color: #9ca3af; } /* gray-400 */
+        
+        /* 动画效果 */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .mermaid-diagram {
+            background-color: var(--card-bg-light);
+            border-radius: 0.5rem;
+            padding: 2rem; /* Increased padding for more space */
+            margin-top: 2rem;
+            width: 100%;
+            overflow-x: auto; /* Allow horizontal scrolling */
+        }
+        .dark .mermaid-diagram {
+            background-color: var(--card-bg-dark);
+        }
+        
+        /* Custom Mermaid Node Styles */
+        .mermaid .node.as-is-node rect {
+            fill: #e5e7eb !important; /* gray-200 */
+            stroke: #9ca3af !important; /* gray-400 */
+            stroke-width: 1.5px !important;
+            color: #111827 !important;
+        }
+        .dark .mermaid .node.as-is-node rect {
+            fill: #374151 !important; /* gray-700 */
+            stroke: #6b7280 !important; /* gray-500 */
+            color: #d1d5db !important;
+        }
+        .mermaid .node.as-is-node .label {
+            color: #111827 !important;
+        }
+        .dark .mermaid .node.as-is-node .label {
+            color: #d1d5db !important;
+        }
+
+        .mermaid .node.to-be-node rect {
+            fill: #4f46e5 !important; /* indigo-600 */
+            stroke: #312e81 !important; /* indigo-800 */
+            stroke-width: 1.5px !important;
+        }
+        .mermaid .node.to-be-node .label {
+            color: #ffffff !important;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Theme switcher -->
+    <button id="theme-toggle" class="fixed top-4 right-4 z-50 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-transform duration-200 hover:scale-110">
+        <i class="fas fa-sun" id="theme-toggle-light-icon"></i>
+        <i class="fas fa-moon" id="theme-toggle-dark-icon"></i>
+    </button>
+
+    <div class="container mx-auto px-4 md:px-8 max-w-5xl">
+
+        <!-- 1. Header & Vision -->
+        <header class="py-20 md:py-32 text-center fade-in-section">
+            <h1 class="text-4xl md:text-6xl font-bold text-main tracking-tight">领航员计划</h1>
+            <p class="mt-6 text-lg md:text-xl text-secondary max-w-3xl mx-auto">探索如何将 AI 从一个孤立的外部工具，转变为深度嵌入工作流的思考伙伴。</p>
+            <div class="mt-8 flex justify-center gap-4">
+                <a href="#challenges" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-transform duration-200 hover:scale-105">了解挑战</a>
+                <a href="#solutions" class="px-6 py-3 bg-card border border-dynamic text-main font-semibold rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-transform duration-200 hover:scale-105">查看方案</a>
+            </div>
+        </header>
+
+        <main>
+            <!-- 2. The Challenges -->
+            <section id="challenges" class="py-16 md:py-24 border-t border-dynamic fade-in-section">
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-main">我们面临的挑战</h2>
+                    <p class="mt-4 text-lg text-secondary max-w-2xl mx-auto">尽管AI技术日新月异，但在实际知识工作中，其潜力远未被充分释放。</p>
+                </div>
+                <div class="mt-12 grid md:grid-cols-3 gap-8">
+                    <div class="bg-card p-6 rounded-lg border border-dynamic">
+                        <i class="fas fa-cubes text-2xl text-indigo-500"></i>
+                        <h3 class="mt-4 text-xl font-semibold text-main">上下文壁垒</h3>
+                        <p class="mt-2 text-secondary">AI被隔离在工作流之外，无法自动感知和聚合散落的上下文，导致输出不够精准。</p>
+                    </div>
+                    <div class="bg-card p-6 rounded-lg border border-dynamic">
+                        <i class="fas fa-mouse-pointer text-2xl text-indigo-500"></i>
+                        <h3 class="mt-4 text-xl font-semibold text-main">交互摩擦</h3>
+                        <p class="mt-2 text-secondary">基于文本的交互模式低效且反直觉，强行将连贯的思绪"降维"到线性文字输入中。</p>
+                    </div>
+                    <div class="bg-card p-6 rounded-lg border border-dynamic">
+                        <i class="fas fa-cogs text-2xl text-indigo-500"></i>
+                        <h3 class="mt-4 text-xl font-semibold text-main">使用惯性</h3>
+                        <p class="mt-2 text-secondary">人类行为充满惯性，面对新工具，往往会下意识退回到熟悉但低效的旧有工作模式。</p>
+                    </div>
+                </div>
+
+                <!-- As-Is vs. To-Be Mermaid Diagram -->
+                <div class="mt-16 fade-in-section">
+                    <h3 class="text-2xl font-bold text-center text-main">工作流现状 vs. 目标</h3>
+                     <div class="mermaid-diagram">
+                        <pre class="mermaid">
+                            graph TD
+                                subgraph "现状 (As-Is): 工具箱模式"
+                                    A1(中断心流) --> A2(打开AI对话界面)
+                                    A2 --> A3("手动<br>喂食上下文")
+                                    A3 --> A4("获取'零件'")
+                                    A4 --> A5("手动组装<br>&修改")
+                                end
+                            
+                                subgraph "目标 (To-Be): 领航员模式"
+                                    B1("沉浸式协作") --> B2("全局上下文<br>自动感知")
+                                    B2 --> B3("持续性对话")
+                                    B3 --> B4("无缝融合<br>交付")
+                                end
+                                
+                                classDef asIsNode fill:#f3f4f6,stroke:#d1d5db;
+                                classDef toBeNode fill:#4f46e5,stroke:#312e81,color:#fff;
+                                
+                                class A1,A2,A3,A4,A5 as-is-node;
+                                class B1,B2,B3,B4 to-be-node;
+                        </pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Core Objectives -->
+            <section id="objectives" class="py-16 md:py-24 border-t border-dynamic fade-in-section">
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-main">核心目标</h2>
+                    <p class="mt-4 text-lg text-secondary max-w-2xl mx-auto">为应对挑战，我们设立了三大核心目标。</p>
+                </div>
+                <div class="mt-12 space-y-8 md:space-y-0 md:flex md:gap-8 justify-center">
+                    <div class="md:w-1/3 text-center px-4">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 dark:bg-indigo-900 mx-auto">
+                            <i class="fas fa-database text-2xl text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-main">攻克"上下文壁垒"</h3>
+                        <p class="mt-2 text-secondary">让AI自动获取并理解任务所需的全量上下文。</p>
+                    </div>
+                    <div class="md:w-1/3 text-center px-4">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 dark:bg-indigo-900 mx-auto">
+                            <i class="fas fa-microphone-alt text-2xl text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-main">降低"交互摩擦"</h3>
+                        <p class="mt-2 text-secondary">探索以语音为主的多模态交互，实现自然高效的通信。</p>
+                    </div>
+                    <div class="md:w-1/3 text-center px-4">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 dark:bg-indigo-900 mx-auto">
+                           <i class="fas fa-project-diagram text-2xl text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-main">克服"使用惯性"</h3>
+                        <p class="mt-2 text-secondary">设计以AI为核心的标准作业流程，将AI无缝嵌入工作。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Initial Solution Concepts -->
+            <section id="solutions" class="py-16 md:py-24 border-t border-dynamic fade-in-section bg-card">
+                 <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-main">初步解决方案构想</h2>
+                    <p class="mt-4 text-lg text-secondary max-w-2xl mx-auto">针对三大挑战，我们构想了对应的解决方案框架。</p>
+                </div>
+                <div class="mermaid-diagram">
+                    <pre class="mermaid">
+                        mindmap
+                          root("领航员计划")
+                            ("三大挑战")
+                              ("上下文壁垒")
+                                ::icon(fa fa-cubes)
+                                ("构建'上下文中心'")
+                                  ("工作空间集成")
+                                  ("多模态信息管道")
+                              ("交互摩擦")
+                                ::icon(fa fa-mouse-pointer)
+                                ("实现'语音优先交互'")
+                                  ("核心：语音输入")
+                                  ("统一协作界面")
+                              ("使用惯性")
+                                ::icon(fa fa-cogs)
+                                ("设计'AI原生工作流'")
+                                  ("定义角色化SOP")
+                                  ("嵌入'AI检查点'")
+                    </pre>
+                </div>
+                <div class="mt-12 max-w-4xl mx-auto space-y-8">
+                    <div class="p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-main"><i class="fas fa-brain mr-2 text-indigo-500"></i>构建"上下文中心"</h3>
+                        <p class="mt-2 text-secondary">构建中央化AI交互系统，与工作软件深度打通，建立自动化信息流，让AI主动无缝地读取和索引参考资料。</p>
+                    </div>
+                     <div class="p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-main"><i class="fas fa-wave-square mr-2 text-indigo-500"></i>实现"语音优先的低摩擦交互"</h3>
+                        <p class="mt-2 text-secondary">将交互模式从打字升级为语音，通过连续对话进行头脑风暴和指令下达，提供沉浸式体验。</p>
+                    </div>
+                     <div class="p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-main"><i class="fas fa-sitemap mr-2 text-indigo-500"></i>设计"AI原生工作流 (SOP)"</h3>
+                        <p class="mt-2 text-secondary">重新设计工作流程，在关键环节设置强制性"AI检查点"，将AI从"工具"变为"同事"，培养使用习惯。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Expected Outcomes & Deliverables -->
+            <section id="deliverables" class="py-16 md:py-24 border-t border-dynamic fade-in-section">
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-main">预期成果与交付物</h2>
+                    <p class="mt-4 text-lg text-secondary max-w-2xl mx-auto">项目的最终价值体现为一套可被理解、采纳和应用的完整解决方案。</p>
+                </div>
+                <div class="mt-12 grid md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-card p-8 rounded-lg border border-dynamic">
+                        <i class="fas fa-file-alt text-3xl text-indigo-500"></i>
+                        <h3 class="mt-4 text-xl font-semibold text-main">综合性研究报告</h3>
+                        <p class="mt-2 text-secondary">系统性记录从问题定义到解决方案验证的全过程，沉淀核心知识。</p>
+                    </div>
+                    <div class="bg-card p-8 rounded-lg border border-dynamic">
+                        <i class="fas fa-chalkboard-teacher text-3xl text-indigo-500"></i>
+                        <h3 class="mt-4 text-xl font-semibold text-main">知识分享工作坊</h3>
+                        <p class="mt-2 text-secondary">通过案例演示和互动，向团队传递核心思想与操作流程。</p>
+                    </div>
+                    <div class="bg-card p-8 rounded-lg border border-dynamic">
+                        <i class="fas fa-tools text-3xl text-indigo-500"></i>
+                        <h3 class="mt-4 text-xl font-semibold text-main">可落地的实践工具集</h3>
+                        <p class="mt-2 text-secondary">提供SOP模板、高效提示词库和辅助脚本，降低采纳门槛。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Next Steps -->
+            <section id="next-steps" class="py-16 md:py-24 border-t border-dynamic bg-indigo-600 text-white fade-in-section text-center rounded-lg my-16">
+                <h2 class="text-3xl md:text-4xl font-bold">下一步行动</h2>
+                <p class="mt-4 text-lg max-w-3xl mx-auto text-indigo-200">理论的价值在于实践。我们将选择一个真实的、小型的写作任务作为试点，完整地设计并演练全套"领航员工作流"。</p>
+                <div class="mt-8">
+                     <p class="font-semibold text-white bg-indigo-700/50 inline-block px-6 py-3 rounded-lg">在这个过程中，我们将亲身体验并记录下所有的卡点、洞见和解决方案，为《实践指南》积累第一批素材。</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 border-t border-dynamic text-secondary">
+            <p>&copy; <span id="year"></span> "领航员计划" by a curious explorer.</p>
+        </footer>
+
+    </div>
+
+    <!-- Mermaid.js CDN -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        
+        const isDarkMode = () => document.documentElement.classList.contains('dark');
+
+        const mermaidConfig = {
+            theme: isDarkMode() ? 'dark' : 'default',
+            startOnLoad: false,
+            securityLevel: 'loose',
+            fontFamily: 'Noto Sans SC, sans-serif',
+            fontSize: 16, /* Increased font size */
+            flowchart: {
+                useMaxWidth: false, /* Allow natural width */
+                htmlLabels: true,
+            },
+            mindmap: {
+                useMaxWidth: false, /* Allow natural width */
+                padding: 15,
+                maxLevel: 4,
+            },
+            graph: {
+                useMaxWidth: true,
+                htmlLabels: true
+            },
+            themeVariables: {
+                background: isDarkMode() ? '#1f2937' : '#f9fafb',
+                primaryColor: isDarkMode() ? '#252d3d' : '#f9fafb',
+                primaryTextColor: isDarkMode() ? '#d1d5db' : '#1f2937',
+                lineColor: isDarkMode() ? '#4b5563' : '#d1d5db',
+                textColor: isDarkMode() ? '#d1d5db' : '#1f2937',
+                nodeBorder: isDarkMode() ? '#4f46e5' : '#4f46e5',
+            }
+        };
+
+        await mermaid.initialize(mermaidConfig);
+        await mermaid.run();
+        
+        // Function to re-render mermaid charts on theme change
+        window.renderMermaid = async () => {
+            document.querySelectorAll('.mermaid').forEach(el => {
+                // Clear old svg
+                const parent = el.parentElement;
+                if (parent.querySelector('svg')) {
+                    parent.querySelector('svg').remove();
+                }
+                // el.removeAttribute('data-processed'); // this may not be enough
+                el.innerHTML = el.textContent || el.innerText; // Reset content
+            });
+            mermaidConfig.theme = isDarkMode() ? 'dark' : 'default';
+            mermaidConfig.themeVariables.background = isDarkMode() ? '#1f2937' : '#f9fafb';
+            mermaidConfig.themeVariables.primaryColor = isDarkMode() ? '#252d3d' : '#f9fafb';
+            mermaidConfig.themeVariables.primaryTextColor = isDarkMode() ? '#d1d5db' : '#1f2937';
+            mermaidConfig.themeVariables.lineColor = isDarkMode() ? '#4b5563' : '#d1d5db';
+            mermaidConfig.themeVariables.textColor = isDarkMode() ? '#d1d5db' : '#1f2937';
+            await mermaid.initialize(mermaidConfig);
+            await mermaid.run();
+        };
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Theme Switcher Logic ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+            const htmlEl = document.documentElement;
+
+            // Function to update icon visibility
+            const updateIcons = () => {
+                if (htmlEl.classList.contains('dark')) {
+                    lightIcon.style.display = 'block';
+                    darkIcon.style.display = 'none';
+                } else {
+                    lightIcon.style.display = 'none';
+                    darkIcon.style.display = 'block';
+                }
+            };
+            
+            // Check for saved theme in localStorage or use system preference
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlEl.classList.add('dark');
+            } else {
+                htmlEl.classList.remove('dark');
+            }
+            updateIcons();
+
+            themeToggleBtn.addEventListener('click', () => {
+                htmlEl.classList.toggle('dark');
+                if (htmlEl.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+                updateIcons();
+                // Re-render mermaid charts if they exist
+                if(window.renderMermaid) {
+                    window.renderMermaid();
+                }
+            });
+            
+            // Listen for system theme changes
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (!('theme' in localStorage)) {
+                    if (e.matches) {
+                        htmlEl.classList.add('dark');
+                    } else {
+                        htmlEl.classList.remove('dark');
+                    }
+                    updateIcons();
+                    if(window.renderMermaid) {
+                       window.renderMermaid();
+                    }
+                }
+            });
+
+
+            // --- Scroll Animation Logic ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // --- Footer Year ---
+            document.getElementById('year').textContent = new Date().getFullYear();
+        });
+    </script>
+
+</body>
+</html> 

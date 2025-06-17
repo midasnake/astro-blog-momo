@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI产品专家智能体 - 产品需求文档</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .dark-mode {
+                background-color: #0f172a;
+                color: #e2e8f0;
+            }
+            
+            .dark-card {
+                background-color: #1e293b;
+                border-color: #334155;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-robot text-2xl text-blue-600"></i>
+                    <h1 class="text-xl font-bold">AI产品专家智能体</h1>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#overview" class="hover:text-blue-600 transition-colors">总览</a>
+                    <a href="#persona" class="hover:text-blue-600 transition-colors">角色定义</a>
+                    <a href="#scenarios" class="hover:text-blue-600 transition-colors">核心场景</a>
+                    <a href="#requirements" class="hover:text-blue-600 transition-colors">技术要求</a>
+                </div>
+                <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="pt-20">
+        <!-- 英雄区域 -->
+        <section class="gradient-bg text-white py-20 px-6">
+            <div class="container mx-auto text-center">
+                <div class="max-w-4xl mx-auto fade-in">
+                    <i class="fas fa-cogs text-6xl mb-6 opacity-80"></i>
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6">AI产品专家智能体</h1>
+                    <p class="text-xl md:text-2xl mb-8 text-blue-100">专业、高效的AI产品咨询与个性化推荐系统</p>
+                    <div class="flex flex-col md:flex-row gap-4 justify-center">
+                        <span class="bg-white/20 px-6 py-3 rounded-full text-lg font-medium">版本 1.0</span>
+                        <span class="bg-white/20 px-6 py-3 rounded-full text-lg font-medium">2025-06-16</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产品愿景 -->
+        <section id="overview" class="py-20 px-6">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-6">产品愿景</h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                        在西门子/博世小程序中，构建一个专业、高效的AI产品专家智能体，提供精准产品咨询与个性化推荐
+                    </p>
+                </div>
+                
+                <!-- 核心业务目标 -->
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="text-blue-600 text-4xl mb-6">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">全生命周期知识服务</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            构建产品知识伴侣，在用户与产品的全生命周期中提供专业级的产品知识支持
+                        </p>
+                        <ul class="text-sm text-gray-500 dark:text-gray-400 space-y-2">
+                            <li>• 知识平权：让普通用户获得专业级产品理解</li>
+                            <li>• 全程陪伴：从购买前到使用后的持续支持</li>
+                            <li>• 体验升维：智能产品顾问替代传统说明书</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="text-green-600 text-4xl mb-6">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">企业知识库技术积累</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            攻克复杂图文知识处理难题，积累企业级知识库构建核心技术
+                        </p>
+                        <ul class="text-sm text-gray-500 dark:text-gray-400 space-y-2">
+                            <li>• 技术突破：图文混排文档解析与语义理解</li>
+                            <li>• 能力沉淀：知识资产数字化技术方法论</li>
+                            <li>• 平台基础：为更多知识库应用奠定基础</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="text-purple-600 text-4xl mb-6">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">精准需求匹配</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            实现人与产品的智能连接，提升购买满意度和使用价值最大化
+                        </p>
+                        <ul class="text-sm text-gray-500 dark:text-gray-400 space-y-2">
+                            <li>• 需求洞察：深度挖掘用户真实需求</li>
+                            <li>• 智能匹配：多维度分析实现最优推荐</li>
+                            <li>• 价值最大化：充分发挥产品价值</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 成功指标 -->
+        <section class="py-20 px-6 bg-white dark:bg-gray-800">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-6">成功指标</h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300">三维价值体系：用户价值 × 技术价值 × 商业价值</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-8 rounded-2xl">
+                        <div class="text-blue-600 text-3xl mb-4">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">交互深度指标</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span>平均对话轮数</span>
+                                <span class="font-medium">一期重点</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>用户追问率</span>
+                                <span class="font-medium">一期重点</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>7日回访率</span>
+                                <span class="font-medium">一期重点</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 dark:bg-green-900/20 p-8 rounded-2xl">
+                        <div class="text-green-600 text-3xl mb-4">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">知识准确性指标</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span>知识召回率</span>
+                                <span class="font-medium">一期重点</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>答案准确率</span>
+                                <span class="font-medium">一期重点</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>图片匹配准确率</span>
+                                <span class="font-medium">一期重点</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-8 rounded-2xl">
+                        <div class="text-purple-600 text-3xl mb-4">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">匹配效果指标</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span>推荐点击率</span>
+                                <span class="font-medium">后续迭代</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>引导转化率</span>
+                                <span class="font-medium">后续迭代</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI智能体角色定义 -->
+        <section id="persona" class="py-20 px-6">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-6">AI智能体角色定义</h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300">官方产品专家 - 专业、贴心、直观、清晰、可靠</p>
+                </div>
+                
+                <!-- 特质矩阵 -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-center mb-8">核心特质</h3>
+                    <div class="grid md:grid-cols-5 gap-6">
+                        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg card-hover">
+                            <div class="text-blue-600 text-3xl mb-4">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">专业</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">基于官方数据，准确无误</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg card-hover">
+                            <div class="text-green-600 text-3xl mb-4">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">贴心</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">深入理解用户真实意图</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg card-hover">
+                            <div class="text-purple-600 text-3xl mb-4">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">直观</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">图文结合，一目了然</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg card-hover">
+                            <div class="text-yellow-600 text-3xl mb-4">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">清晰</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">通俗易懂，分步解答</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg card-hover">
+                            <div class="text-red-600 text-3xl mb-4">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">可靠</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">能力范围内尽力解答</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 能力矩阵 -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6 flex items-center">
+                            <i class="fas fa-database text-blue-600 mr-3"></i>
+                            知识体系
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full mt-3"></div>
+                                <div>
+                                    <h4 class="font-semibold">产品主数据</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">覆盖2022年后所有家电SKU的结构化参数</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-green-600 rounded-full mt-3"></div>
+                                <div>
+                                    <h4 class="font-semibold">商品详情页</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">商城在售SKU的图文卖点信息</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-purple-600 rounded-full mt-3"></div>
+                                <div>
+                                    <h4 class="font-semibold">用户使用手册</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">安装、使用、清洁、故障处理等图文内容</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-yellow-600 rounded-full mt-3"></div>
+                                <div>
+                                    <h4 class="font-semibold">FAQ知识</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">常见用户问题与标准答案</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6 flex items-center">
+                            <i class="fas fa-cog text-green-600 mr-3"></i>
+                            核心技能
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full mt-3"></div>
+                                <div>
+                                    <h4 class="font-semibold">自然语言理解</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">精准识别产品型号、功能描述、约束条件</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-green-600 rounded-full mt-3"></div>
+                                <div>
+                                    <h4 class="font-semibold">智能纠错与补全</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">识别错误产品型号，推测正确型号</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-purple-600 rounded-full mt-3"></div>
+                                <div>
+                                    <h4 class="font-semibold">产品卡片推送</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">主动推送相关产品卡片和购买链接</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-yellow-600 rounded-full mt-3"></div>
+                                <div>
+                                    <h4 class="font-semibold">用户画像推理</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">基于行为轨迹提供个性化知识服务</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-red-600 rounded-full mt-3"></div>
+                                <div>
+                                    <h4 class="font-semibold">多模态交互</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">支持文本、语音输入，图文回答</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心场景与功能 -->
+        <section id="scenarios" class="py-20 px-6 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-6">核心场景与功能需求</h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300">基于用户与产品全生命周期的场景规划</p>
+                </div>
+                
+                <!-- 产品生命周期流程图 -->
+                <div class="mb-16 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-center mb-8">产品全生命周期服务</h3>
+                    <div class="mermaid" id="lifecycle-diagram">
+                        graph LR
+                            A[产品认知阶段] --> B[产品选购阶段]
+                            B --> C[产品安装阶段]
+                            C --> D[产品使用阶段]
+                            D --> E[产品维护阶段]
+                            
+                            A1[基础信息咨询<br/>功能卖点解析] --> A
+                            B1[需求匹配推荐<br/>产品对比分析] --> B
+                            C1[安装前准备<br/>安装问题解答] --> C
+                            D1[功能使用指导<br/>使用技巧分享] --> D
+                            E1[日常维护指导<br/>故障诊断处理] --> E
+                            
+                            style A fill:#e1f5fe
+                            style B fill:#f3e5f5
+                            style C fill:#e8f5e8
+                            style D fill:#fff3e0
+                            style E fill:#fce4ec
+                    </div>
+                </div>
+                
+                <!-- 场景详情 -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 产品认知阶段 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="text-blue-600 text-3xl mb-4">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">产品认知阶段</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">用户初步了解产品，探索产品信息和功能特性</p>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                                <h4 class="font-semibold text-sm">产品基础信息咨询</h4>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">了解产品参数规格和基本特点</p>
+                            </div>
+                            <div class="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                                <h4 class="font-semibold text-sm">功能卖点深度解析</h4>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">深入了解技术特点和工作原理</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 产品选购阶段 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="text-purple-600 text-3xl mb-4">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">产品选购阶段</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">用户有购买意向，需要产品推荐和比较选择</p>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                                <h4 class="font-semibold text-sm">需求匹配推荐</h4>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">根据使用需求推荐合适产品</p>
+                            </div>
+                            <div class="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                                <h4 class="font-semibold text-sm">产品对比分析</h4>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">多产品详细对比和选择建议</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 产品安装阶段 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="text-green-600 text-3xl mb-4">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">产品安装阶段</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">用户购买产品后，需要安装指导和准备工作</p>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                <h4 class="font-semibold text-sm">安装前准备</h4>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">了解空间、水电、工具准备要求</p>
+                            </div>
+                            <div class="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                <h4 class="font-semibold text-sm">安装问题解答</h4>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">解决安装过程中的具体问题</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 产品使用阶段 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="text-orange-600 text-3xl mb-4">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">产品使用阶段</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">用户日常使用产品，需要操作指导和使用技巧</p>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                                <h4 class="font-semibold text-sm">功能使用指导</h4>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">具体功能的操作步骤和使用场景</p>
+                            </div>
+                            <div class="p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                                <h4 class="font-semibold text-sm">使用技巧分享</h4>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">获得更好使用效果的专业技巧</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 产品维护阶段 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="text-red-600 text-3xl mb-4">
+                            <i class="fas fa-wrench"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">产品维护阶段</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">用户长期使用产品，需要维护保养和故障处理</p>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
+                                <h4 class="font-semibold text-sm">日常维护指导</h4>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">定期保养计划和维护要点</p>
+                            </div>
+                            <div class="p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
+                                <h4 class="font-semibold text-sm">故障诊断处理</h4>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">快速诊断问题并提供解决方案</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 服务边界 -->
+                    <div class="bg-gray-100 dark:bg-gray-700 p-8 rounded-2xl shadow-lg">
+                        <div class="text-gray-600 text-3xl mb-4">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">服务边界与红线</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">明确服务范围，确保专业可靠</p>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-times text-red-500"></i>
+                                <span>法律法规禁止类内容</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-times text-red-500"></i>
+                                <span>竞品相关信息咨询</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-times text-red-500"></i>
+                                <span>售后服务政策解读</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-times text-red-500"></i>
+                                <span>实时价格查询预测</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 非功能性需求 -->
+        <section id="requirements" class="py-20 px-6 bg-white dark:bg-gray-800">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-6">非功能性需求</h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300">技术架构与系统要求</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-8 rounded-2xl">
+                        <div class="text-blue-600 text-3xl mb-4">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">自动化数据管道</h3>
+                        <p class="text-gray-600 dark:text-gray-300">建立自动化流程，定期接入、解析、处理新增或更新的各类知识文档</p>
+                    </div>
+                    
+                    <div class="bg-green-50 dark:bg-green-900/20 p-8 rounded-2xl">
+                        <div class="text-green-600 text-3xl mb-4">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">可扩展性与配置</h3>
+                        <p class="text-gray-600 dark:text-gray-300">支持方便地新增知识、修改问答对、调整Agent行为策略</p>
+                    </div>
+                    
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-8 rounded-2xl">
+                        <div class="text-purple-600 text-3xl mb-4">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">评测与测试</h3>
+                        <p class="text-gray-600 dark:text-gray-300">完整的评测方案，包含准确性、流畅性、覆盖率等维度</p>
+                    </div>
+                    
+                    <div class="bg-yellow-50 dark:bg-yellow-900/20 p-8 rounded-2xl">
+                        <div class="text-yellow-600 text-3xl mb-4">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">性能要求</h3>
+                        <p class="text-gray-600 dark:text-gray-300">95%的请求首次响应时间应在1.5秒以内</p>
+                    </div>
+                    
+                    <div class="bg-red-50 dark:bg-red-900/20 p-8 rounded-2xl">
+                        <div class="text-red-600 text-3xl mb-4">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">安全与合规</h3>
+                        <p class="text-gray-600 dark:text-gray-300">所有交互内容需符合数据安全和隐私保护法规</p>
+                    </div>
+                    
+                    <div class="bg-orange-50 dark:bg-orange-900/20 p-8 rounded-2xl">
+                        <div class="text-orange-600 text-3xl mb-4">
+                            <i class="fas fa-api"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">OpenAPI集成</h3>
+                        <p class="text-gray-600 dark:text-gray-300">提供稳定、易用的OpenAPI，便于多渠道复用</p>
+                    </div>
+                </div>
+                
+                <!-- 技术架构图 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-center mb-8">技术架构概览</h3>
+                    <div class="mermaid" id="architecture-diagram">
+                        graph TB
+                            A[用户接口层] --> B[智能体服务层]
+                            B --> C[知识处理层]
+                            C --> D[数据存储层]
+                            
+                            A1[小程序界面] --> A
+                            A2[Web界面] --> A
+                            A3[API接口] --> A
+                            
+                            B1[自然语言理解] --> B
+                            B2[对话管理] --> B
+                            B3[推荐引擎] --> B
+                            
+                            C1[文档解析] --> C
+                            C2[知识抽取] --> C
+                            C3[语义搜索] --> C
+                            
+                            D1[产品数据库] --> D
+                            D2[知识图谱] --> D
+                            D3[用户画像] --> D
+                            
+                            style A fill:#e1f5fe
+                            style B fill:#f3e5f5
+                            style C fill:#e8f5e8
+                            style D fill:#fff3e0
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 交互剧本示例 -->
+        <section class="py-20 px-6 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-6">交互剧本示例</h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300">真实场景下的AI智能体对话体验</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- 产品咨询示例 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-xl font-bold mb-6 flex items-center">
+                            <i class="fas fa-comments text-blue-600 mr-3"></i>
+                            产品信息咨询
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user text-blue-600 text-sm"></i>
+                                </div>
+                                <div class="flex-1 bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                                    <p class="text-sm">"CD289ABS0W是什么产品？有什么特点？"</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-robot text-green-600 text-sm"></i>
+                                </div>
+                                <div class="flex-1 bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                                    <p class="text-sm font-medium mb-2">CD289ABS0W是西门子的嵌入式洗碗机，主要特点包括：</p>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• 14套餐具容量，适合中等家庭</li>
+                                        <li>• 晶蕾烘干技术，餐具干燥无水渍</li>
+                                        <li>• 6种洗涤程序，满足不同清洁需求</li>
+                                        <li>• 能耗等级A+++，节能环保</li>
+                                    </ul>
+                                    <p class="text-sm mt-2 text-gray-600 dark:text-gray-400">您想了解它的具体尺寸或安装要求吗？</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 故障诊断示例 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-xl font-bold mb-6 flex items-center">
+                            <i class="fas fa-tools text-red-600 mr-3"></i>
+                            故障诊断处理
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user text-blue-600 text-sm"></i>
+                                </div>
+                                <div class="flex-1 bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                                    <p class="text-sm">"洗碗机显示E15错误，不工作了"</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-robot text-green-600 text-sm"></i>
+                                </div>
+                                <div class="flex-1 bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                                    <p class="text-sm font-medium mb-2">E15错误表示进水故障，我来帮您排查：</p>
+                                    <div class="text-sm space-y-2">
+                                        <p class="font-medium">立即检查：</p>
+                                        <ul class="space-y-1 ml-4">
+                                            <li>1. 水龙头是否打开 - 确认供水正常</li>
+                                            <li>2. 进水管是否弯折 - 检查管路通畅</li>
+                                            <li>3. 过滤网是否堵塞 - 清理进水口过滤网</li>
+                                        </ul>
+                                        <p class="text-gray-600 dark:text-gray-400 mt-2">请先按照步骤排查，告诉我结果，我再给您下一步指导。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目时间轴 -->
+        <section class="py-20 px-6 bg-white dark:bg-gray-800">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-6">项目实施时间轴</h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300">分阶段实现产品目标</p>
+                </div>
+                
+                <div class="bg-gray-50 dark:bg-gray-700 p-8 rounded-2xl shadow-lg">
+                    <div class="mermaid" id="timeline-diagram">
+                        gantt
+                            title 项目实施甘特图
+                            dateFormat  YYYY-MM-DD
+                            section 第一阶段
+                            需求分析           :done,    des1, 2025-01-01,2025-01-15
+                            技术选型           :done,    des2, 2025-01-10,2025-01-25
+                            知识库构建         :active,  des3, 2025-01-20,2025-02-28
+                            section 第二阶段  
+                            AI模型训练         :         des4, 2025-02-15,2025-03-30
+                            系统集成测试       :         des5, 2025-03-15,2025-04-15
+                            section 第三阶段
+                            内测与优化         :         des6, 2025-04-01,2025-04-30
+                            正式上线           :         des7, 2025-05-01,2025-05-15
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <i class="fas fa-robot text-3xl text-blue-400"></i>
+                        <h3 class="text-xl font-bold">AI产品专家</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">专业、高效的AI产品咨询与个性化推荐系统</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">产品特性</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#persona" class="hover:text-white transition-colors">角色定义</a></li>
+                        <li><a href="#scenarios" class="hover:text-white transition-colors">核心场景</a></li>
+                        <li><a href="#requirements" class="hover:text-white transition-colors">技术要求</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">技术文档</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">API文档</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">开发指南</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">部署手册</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">联系我们</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@example.com</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-phone"></i>
+                            <span>+86 123 4567 8900</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-400 mb-4 md:mb-0">
+                        <p>&copy; 2025 AI产品专家智能体. 保留所有权利.</p>
+                    </div>
+                    <div class="text-gray-400">
+                        <p>设计与开发：<span class="text-blue-400 font-medium">仓河工作室</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button id="scroll-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all transform scale-0 opacity-0">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // 初始化 Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#3b82f6',
+                primaryTextColor: '#1f2937',
+                primaryBorderColor: '#3b82f6',
+                lineColor: '#6b7280',
+                secondaryColor: '#e5e7eb',
+                tertiaryColor: '#f3f4f6'
+            }
+        });
+
+        // 主题切换功能
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // 检查系统主题偏好
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+        
+        if (savedTheme) {
+            html.classList.toggle('dark', savedTheme === 'dark');
+        } else {
+            html.classList.toggle('dark', prefersDark);
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // 滚动动画效果
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // 观察所有需要动画的元素
+        document.querySelectorAll('section, .card-hover').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 回到顶部按钮
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.remove('scale-0', 'opacity-0');
+                scrollToTopBtn.classList.add('scale-100', 'opacity-100');
+            } else {
+                scrollToTopBtn.classList.add('scale-0', 'opacity-0');
+                scrollToTopBtn.classList.remove('scale-100', 'opacity-100');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 平滑滚动导航
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 导航栏滚动效果
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('nav');
+        
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // 向下滚动
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                // 向上滚动
+                navbar.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // 添加加载动画
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease-in-out';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // 响应式菜单（移动端）
+        const mobileMenuToggle = document.createElement('button');
+        mobileMenuToggle.className = 'md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800';
+        mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        
+        const navLinks = document.querySelector('nav .hidden.md\\:flex');
+        if (navLinks) {
+            const navContainer = navLinks.parentElement;
+            navContainer.insertBefore(mobileMenuToggle, navContainer.lastElementChild);
+            
+            mobileMenuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('hidden');
+                navLinks.classList.toggle('flex');
+                navLinks.classList.toggle('flex-col');
+                navLinks.classList.toggle('absolute');
+                navLinks.classList.toggle('top-full');
+                navLinks.classList.toggle('left-0');
+                navLinks.classList.toggle('right-0');
+                navLinks.classList.toggle('bg-white');
+                navLinks.classList.toggle('dark:bg-gray-900');
+                navLinks.classList.toggle('border-t');
+                navLinks.classList.toggle('border-gray-200');
+                navLinks.classList.toggle('dark:border-gray-700');
+                navLinks.classList.toggle('p-4');
+            });
+        }
+    </script>
+</body>
+</html> 
