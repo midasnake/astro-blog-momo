@@ -508,19 +508,19 @@
                             participant H as Host
                             participant S as Server
                             
-                            H->>C: 启动客户端
-                            C->>S: initialize(能力)
-                            S-->>C: initialized(能力)
-                            Note over C,S: 握手完成, 开始通信
+                            H->>C: Start Client
+                            C->>S: initialize
+                            S-->>C: initialized
+                            Note over C,S: Handshake Complete
                             
-                            loop 上下文供给
+                            loop Context Supply
                                 S->>C: Resources/Roots
                                 S->>C: Prompts/Sampling
                             end
                             
-                            loop 动作执行
+                            loop Action Execute
                                 C->>S: tools/call
-                                S-->>C: 执行结果
+                                S-->>C: Result
                             end
                             
                             C->>S: close
@@ -1033,8 +1033,8 @@
                      <div class="mb-8">
                          <div class="mermaid">
                              graph LR
-                                 A["🔧 软件 1.0<br/>代码编程时代<br/>Code → Compile → Run"] --> B["🧠 软件 2.0<br/>神经网络时代<br/>Data → Train → Model"]
-                                 B --> C["✨ 软件 3.0<br/>提示工程时代<br/>Idea → Prompt → Validate → Deploy"]
+                                 A["软件 1.0<br/>代码编程时代<br/>Code → Compile → Run"] --> B["软件 2.0<br/>神经网络时代<br/>Data → Train → Model"]
+                                 B --> C["软件 3.0<br/>提示工程时代<br/>Idea → Prompt → Validate → Deploy"]
                                  
                                  style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
                                  style B fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
@@ -1101,25 +1101,34 @@
                      <!-- LLMs 四重属性概览图 -->
                      <div class="mb-8">
                          <div class="mermaid">
-                             mindmap
-                               root((LLMs<br/>四重属性))
-                                 (🔌 公共基础设施)
-                                   巨额资本支出
-                                   同质化API
-                                   按量计费
-                                   稳定性要求
-                                 (🏭 晶圆厂特性)
-                                   深度技术树
-                                   算力对比
-                                   产业分工
-                                 (💻 操作系统)
-                                   复杂生态系统
-                                   内存空间类比
-                                   市场格局
-                                 (🖥️ 分时大型机)
-                                   历史回声
-                                   交互模式
-                                   逆向普及
+                             graph TD
+                                 A[LLMs 四重属性] --> B[公共基础设施]
+                                 A --> C[晶圆厂特性]
+                                 A --> D[操作系统]
+                                 A --> E[分时大型机]
+                                 
+                                 B --> B1[巨额资本支出]
+                                 B --> B2[同质化API]
+                                 B --> B3[按量计费]
+                                 B --> B4[稳定性要求]
+                                 
+                                 C --> C1[深度技术树]
+                                 C --> C2[算力对比]
+                                 C --> C3[产业分工]
+                                 
+                                 D --> D1[复杂生态系统]
+                                 D --> D2[内存空间类比]
+                                 D --> D3[市场格局]
+                                 
+                                 E --> E1[历史回声]
+                                 E --> E2[交互模式]
+                                 E --> E3[逆向普及]
+                                 
+                                 style A fill:#f9f9f9,stroke:#333,stroke-width:3px
+                                 style B fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+                                 style C fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+                                 style D fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+                                 style E fill:#fff3e0,stroke:#f57c00,stroke-width:2px
                          </div>
                      </div>
 
@@ -1248,24 +1257,30 @@
                                      A[人类控制] --> B[部分自主]
                                      B --> C[高度自主]
                                      
-                                     B1[Cursor: Tab] --> B2[Cursor: Cmd+K] 
-                                     B2 --> B3[Cursor: Cmd+L]
-                                     B3 --> B4[Cursor: Cmd+I Agent模式]
+                                     subgraph Cursor
+                                         B1[Tab] --> B2[Cmd+K] 
+                                         B2 --> B3[Cmd+L]
+                                         B3 --> B4[Cmd+I Agent模式]
+                                     end
                                      
-                                     P1[Perplexity: Search] --> P2[Perplexity: Research]
-                                     P2 --> P3[Perplexity: Deep Research]
+                                     subgraph Perplexity
+                                         P1[Search] --> P2[Research]
+                                         P2 --> P3[Deep Research]
+                                     end
                                      
-                                     T1[Tesla: Level 1] --> T2[Tesla: Level 2]
-                                     T2 --> T3[Tesla: Level 3]
-                                     T3 --> T4[Tesla: Level 4]
+                                     subgraph Tesla
+                                         T1[Level 1] --> T2[Level 2]
+                                         T2 --> T3[Level 3]
+                                         T3 --> T4[Level 4]
+                                     end
                                      
-                                     A -.-> B1
-                                     B -.-> B2
-                                     B -.-> P1
-                                     B -.-> T1
-                                     C -.-> B4
-                                     C -.-> P3
-                                     C -.-> T4
+                                     A --> B1
+                                     B --> B2
+                                     B --> P1
+                                     B --> T1
+                                     C --> B4
+                                     C --> P3
+                                     C --> T4
                                      
                                      style A fill:#ffebee,stroke:#d32f2f
                                      style B fill:#fff3e0,stroke:#f57c00
@@ -1377,29 +1392,30 @@
                          <div class="mb-8">
                              <div class="mermaid">
                                  graph TB
-                                     subgraph "数字信息系统"
+                                     subgraph System["数字信息系统"]
                                          Data[数字信息/服务]
                                      end
                                      
-                                     subgraph "传统消费者"
-                                         Human[👤 人类<br/>GUI 界面]
-                                         Computer[💻 计算机<br/>API 接口]
+                                     subgraph Traditional["传统消费者"]
+                                         Human[人类 - GUI界面]
+                                         Computer[计算机 - API接口]
                                      end
                                      
-                                     subgraph "新兴消费者"
-                                         Agent[🤖 智能体<br/>具有类人特性的计算机]
+                                     subgraph Emerging["新兴消费者"]
+                                         Agent[智能体 - 类人特性计算机]
                                      end
                                      
                                      Data --> Human
                                      Data --> Computer
                                      Data --> Agent
                                      
-                                     Human -.-> |需要| GUI[图形用户界面]
-                                     Computer -.-> |需要| API[应用程序接口]
-                                     Agent -.-> |需要| AIInterface[AI友好接口<br/>curl命令、结构化数据]
+                                     Human --> GUI[图形用户界面]
+                                     Computer --> API[应用程序接口]
+                                     Agent --> AIInterface[AI友好接口]
                                      
                                      style Agent fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
                                      style AIInterface fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+                                     style Data fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
                              </div>
                          </div>
 
@@ -1521,7 +1537,10 @@
                         <p class="muted mb-6">编程的本质正从指令式 (Imperative) 转向声明式 (Declarative)。</p>
                         <div class="mermaid">
                             graph LR
-                                A[软件 1.0 <br> Code -> Compile -> Run] --> B[软件 3.0 <br> Idea -> Prompt -> Validate -> Deploy]
+                                A[软件 1.0<br/>Code → Compile → Run] --> B[软件 3.0<br/>Idea → Prompt → Validate → Deploy]
+                                
+                                style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+                                style B fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
                         </div>
                          <div class="mt-6 space-y-4">
                             <div><strong>抽象层次跃迁:</strong> LLM 成为更高层次的"编译器"。</div>
@@ -1534,25 +1553,29 @@
                         <h3 class="text-2xl font-semibold mb-4">2. 需要为 Agent 构建世界</h3>
                         <p class="muted mb-6">真正的智能体需要一个可供其感知、交互和影响的"世界"。</p>
                         <div class="mermaid">
-                             mindmap
-                              root((为 Agent 构建世界))
-                                ::icon(fa fa-globe)
-                                (统一的协议)
-                                  ::icon(fa fa-link)
-                                  开放、标准化
-                                  解耦 AI "大脑"与"身体"
-                                (无缝的工具接入)
-                                  ::icon(fa fa-tools)
-                                  调用外部 API/脚本
-                                  标准化描述、安全环境
-                                (可信的身份系统)
-                                  ::icon(fa fa-id-card)
-                                  代表用户执行操作
-                                  可靠的 Auth 机制
-                                (持久化的记忆)
-                                  ::icon(fa fa-database)
-                                  存储/检索历史
-                                  实现个性化和持续学习
+                            graph TD
+                                A[为 Agent 构建世界] --> B[统一的协议]
+                                A --> C[无缝的工具接入]
+                                A --> D[可信的身份系统]
+                                A --> E[持久化的记忆]
+                                
+                                B --> B1[开放、标准化]
+                                B --> B2[解耦AI大脑与身体]
+                                
+                                C --> C1[调用外部API/脚本]
+                                C --> C2[标准化描述、安全环境]
+                                
+                                D --> D1[代表用户执行操作]
+                                D --> D2[可靠的Auth机制]
+                                
+                                E --> E1[存储/检索历史]
+                                E --> E2[实现个性化和持续学习]
+                                
+                                style A fill:#f9f9f9,stroke:#333,stroke-width:3px
+                                style B fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+                                style C fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+                                style D fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+                                style E fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
                         </div>
                     </div>
                 </div>
@@ -1797,7 +1820,7 @@
         </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
     <script>
         // --- 1. Dark/Light Mode Switcher ---
         const themeToggleBtn = document.getElementById('theme-toggle');
@@ -1899,12 +1922,15 @@
                 flowchart: {
                     useMaxWidth: true,
                     htmlLabels: true,
+                    curve: 'basis'
                 },
                 sequence: {
                     useMaxWidth: true,
+                    wrap: true
                 },
-                mindmap: {
+                graph: {
                     useMaxWidth: true,
+                    htmlLabels: true
                 }
             });
             mermaid.run();
