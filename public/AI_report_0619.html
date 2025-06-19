@@ -502,29 +502,73 @@
                     </div>
                     
                     <h3 class="text-2xl font-semibold mb-6 mt-12">协同工作流程</h3>
-                    <div class="mermaid">
-                        sequenceDiagram
-                            participant C as Client
-                            participant H as Host
-                            participant S as Server
+                    <div class="bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-800 dark:to-blue-900/20 p-8 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <!-- 工作流程时间线 -->
+                        <div class="relative">
+                            <!-- 主时间线 -->
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-600 rounded-full"></div>
                             
-                            H->>C: Start Client
-                            C->>S: initialize
-                            S-->>C: initialized
-                            Note over C,S: Handshake Complete
-                            
-                            loop Context Supply
-                                S->>C: Resources/Roots
-                                S->>C: Prompts/Sampling
-                            end
-                            
-                            loop Action Execute
-                                C->>S: tools/call
-                                S-->>C: Result
-                            end
-                            
-                            C->>S: close
-                            S-->>C: close
+                            <!-- 步骤节点 -->
+                            <div class="space-y-12">
+                                <!-- 步骤1: 初始化 -->
+                                <div class="relative flex items-center">
+                                    <div class="flex-1 text-right pr-8">
+                                        <div class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md border border-blue-200 dark:border-blue-700">
+                                            <h4 class="font-semibold text-blue-600 mb-1">1. 初始化握手</h4>
+                                            <p class="text-sm muted">Host → Client → Server</p>
+                                            <p class="text-xs muted mt-1">建立连接并交换能力信息</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-4 h-4 bg-blue-500 rounded-full border-4 border-white dark:border-slate-900 z-10 relative"></div>
+                                    <div class="flex-1 pl-8"></div>
+                                </div>
+                                
+                                <!-- 步骤2: 上下文供给 -->
+                                <div class="relative flex items-center">
+                                    <div class="flex-1 pr-8"></div>
+                                    <div class="w-4 h-4 bg-green-500 rounded-full border-4 border-white dark:border-slate-900 z-10 relative"></div>
+                                    <div class="flex-1 text-left pl-8">
+                                        <div class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md border border-green-200 dark:border-green-700">
+                                            <h4 class="font-semibold text-green-600 mb-1">2. 上下文供给</h4>
+                                            <p class="text-sm muted">Server → Client</p>
+                                            <div class="text-xs muted mt-1 space-y-1">
+                                                <div>• Resources/Roots 提供</div>
+                                                <div>• Prompts/Sampling 交互</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 步骤3: 动作执行 -->
+                                <div class="relative flex items-center">
+                                    <div class="flex-1 text-right pr-8">
+                                        <div class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md border border-purple-200 dark:border-purple-700">
+                                            <h4 class="font-semibold text-purple-600 mb-1">3. 动作执行</h4>
+                                            <p class="text-sm muted">Client ↔ Server</p>
+                                            <div class="text-xs muted mt-1 space-y-1">
+                                                <div>• Tools/Call 调用</div>
+                                                <div>• 执行结果返回</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-4 h-4 bg-purple-500 rounded-full border-4 border-white dark:border-slate-900 z-10 relative"></div>
+                                    <div class="flex-1 pl-8"></div>
+                                </div>
+                                
+                                <!-- 步骤4: 连接关闭 -->
+                                <div class="relative flex items-center">
+                                    <div class="flex-1 pr-8"></div>
+                                    <div class="w-4 h-4 bg-red-500 rounded-full border-4 border-white dark:border-slate-900 z-10 relative"></div>
+                                    <div class="flex-1 text-left pl-8">
+                                        <div class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md border border-red-200 dark:border-red-700">
+                                            <h4 class="font-semibold text-red-600 mb-1">4. 连接关闭</h4>
+                                            <p class="text-sm muted">Client ↔ Server</p>
+                                            <p class="text-xs muted mt-1">安全断开连接</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1029,18 +1073,6 @@
                  <div class="mb-12">
                      <h3 class="text-2xl font-semibold mb-6 text-center">软件演进的三个时代</h3>
                      
-                     <!-- 演进时间线图 -->
-                     <div class="mb-8">
-                         <div class="mermaid">
-                             graph LR
-                                 A["软件 1.0<br/>代码编程时代<br/>Code → Compile → Run"] --> B["软件 2.0<br/>神经网络时代<br/>Data → Train → Model"]
-                                 B --> C["软件 3.0<br/>提示工程时代<br/>Idea → Prompt → Validate → Deploy"]
-                                 
-                                 style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-                                 style B fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
-                                 style C fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-                         </div>
-                     </div>
 
                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                          <div class="card p-6 rounded-lg border-l-4 border-blue-500">
@@ -1100,35 +1132,130 @@
                      
                      <!-- LLMs 四重属性概览图 -->
                      <div class="mb-8">
-                         <div class="mermaid">
-                             graph TD
-                                 A[LLMs 四重属性] --> B[公共基础设施]
-                                 A --> C[晶圆厂特性]
-                                 A --> D[操作系统]
-                                 A --> E[分时大型机]
+                         <div class="bg-gradient-to-br from-slate-50 to-indigo-50 dark:from-slate-800 dark:to-indigo-900/20 p-8 rounded-xl border border-slate-200 dark:border-slate-700">
+                             <!-- 中心概念 -->
+                             <div class="text-center mb-8">
+                                 <div class="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full shadow-lg mb-4">
+                                     <span class="text-white font-bold text-lg">LLMs</span>
+                                 </div>
+                                 <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200">四重属性并存</h4>
+                                 <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">重新定义大语言模型的本质特征</p>
+                             </div>
+                             
+                             <!-- 四个属性卡片 -->
+                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                 <!-- 公共基础设施 -->
+                                 <div class="group bg-white dark:bg-slate-800 p-6 rounded-xl border border-blue-200 dark:border-blue-700 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                                     <div class="flex items-center mb-4">
+                                         <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                             <i class="fas fa-plug text-white text-xl"></i>
+                                         </div>
+                                         <h5 class="text-lg font-semibold text-blue-700 dark:text-blue-300">公共基础设施</h5>
+                                     </div>
+                                     <div class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-blue-500 mr-2 text-xs"></i>
+                                             <span>巨额资本支出（相当于建设电网）</span>
+                                         </div>
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-blue-500 mr-2 text-xs"></i>
+                                             <span>通过同质化API提供智能服务</span>
+                                         </div>
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-blue-500 mr-2 text-xs"></i>
+                                             <span>按量计费（每百万tokens收费）</span>
+                                         </div>
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-blue-500 mr-2 text-xs"></i>
+                                             <span>对稳定性要求极高</span>
+                                         </div>
+                                     </div>
+                                 </div>
                                  
-                                 B --> B1[巨额资本支出]
-                                 B --> B2[同质化API]
-                                 B --> B3[按量计费]
-                                 B --> B4[稳定性要求]
+                                 <!-- 晶圆厂特性 -->
+                                 <div class="group bg-white dark:bg-slate-800 p-6 rounded-xl border border-green-200 dark:border-green-700 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                                     <div class="flex items-center mb-4">
+                                         <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                             <i class="fas fa-microchip text-white text-xl"></i>
+                                         </div>
+                                         <h5 class="text-lg font-semibold text-green-700 dark:text-green-300">晶圆厂特性</h5>
+                                     </div>
+                                     <div class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-green-500 mr-2 text-xs"></i>
+                                             <span>深度技术树研发与技术机密</span>
+                                         </div>
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-green-500 mr-2 text-xs"></i>
+                                             <span>4纳米工艺 ≈ 10²⁰次浮点运算集群</span>
+                                         </div>
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-green-500 mr-2 text-xs"></i>
+                                             <span>使用英伟达GPU = 无晶圆厂</span>
+                                         </div>
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-green-500 mr-2 text-xs"></i>
+                                             <span>谷歌TPU = 拥有晶圆厂</span>
+                                         </div>
+                                     </div>
+                                 </div>
                                  
-                                 C --> C1[深度技术树]
-                                 C --> C2[算力对比]
-                                 C --> C3[产业分工]
+                                 <!-- 操作系统 -->
+                                 <div class="group bg-white dark:bg-slate-800 p-6 rounded-xl border border-purple-200 dark:border-purple-700 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                                     <div class="flex items-center mb-4">
+                                         <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                             <i class="fas fa-desktop text-white text-xl"></i>
+                                         </div>
+                                         <h5 class="text-lg font-semibold text-purple-700 dark:text-purple-300">操作系统</h5>
+                                     </div>
+                                     <div class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-purple-500 mr-2 text-xs"></i>
+                                             <span>复杂软件生态系统，非简单商品</span>
+                                         </div>
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-purple-500 mr-2 text-xs"></i>
+                                             <span>系统/用户空间（提示空间 ≈ 内核/用户空间）</span>
+                                         </div>
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-purple-500 mr-2 text-xs"></i>
+                                             <span>闭源供应商（GPT/Claude ≈ Mac/Windows）</span>
+                                         </div>
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-purple-500 mr-2 text-xs"></i>
+                                             <span>开源生态（Llama ≈ Linux）</span>
+                                         </div>
+                                     </div>
+                                 </div>
                                  
-                                 D --> D1[复杂生态系统]
-                                 D --> D2[内存空间类比]
-                                 D --> D3[市场格局]
-                                 
-                                 E --> E1[历史回声]
-                                 E --> E2[交互模式]
-                                 E --> E3[逆向普及]
-                                 
-                                 style A fill:#f9f9f9,stroke:#333,stroke-width:3px
-                                 style B fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-                                 style C fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
-                                 style D fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-                                 style E fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+                                 <!-- 分时大型机 -->
+                                 <div class="group bg-white dark:bg-slate-800 p-6 rounded-xl border border-orange-200 dark:border-orange-700 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                                     <div class="flex items-center mb-4">
+                                         <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                             <i class="fas fa-server text-white text-xl"></i>
+                                         </div>
+                                         <h5 class="text-lg font-semibold text-orange-700 dark:text-orange-300">分时大型机</h5>
+                                     </div>
+                                     <div class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-orange-500 mr-2 text-xs"></i>
+                                             <span>类似早期分时操作系统</span>
+                                         </div>
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-orange-500 mr-2 text-xs"></i>
+                                             <span>远程运行并流式输出内容</span>
+                                         </div>
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-orange-500 mr-2 text-xs"></i>
+                                             <span>文本聊天 ≈ 终端界面</span>
+                                         </div>
+                                         <div class="flex items-center">
+                                             <i class="fas fa-dot-circle text-orange-500 mr-2 text-xs"></i>
+                                             <span>消费者→企业→政府的逆向普及</span>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
                          </div>
                      </div>
 
@@ -1252,39 +1379,114 @@
 
                                                  <!-- 自主性滑块概念图 -->
                          <div class="mb-8">
-                             <div class="mermaid">
-                                 graph TD
-                                     A[人类控制] --> B[部分自主]
-                                     B --> C[高度自主]
+                             <div class="bg-gradient-to-r from-slate-50 to-purple-50 dark:from-slate-800 dark:to-purple-900/20 p-8 rounded-xl border border-slate-200 dark:border-slate-700">
+                                 <!-- 滑块标题 -->
+                                 <div class="text-center mb-8">
+                                     <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-2">自主性滑块设计</h4>
+                                     <p class="text-sm text-slate-600 dark:text-slate-400">从人类控制到高度自主的渐进式设计</p>
+                                 </div>
+                                 
+                                 <!-- 自主性级别指示器 -->
+                                 <div class="relative mb-8">
+                                     <div class="flex justify-between items-center mb-4">
+                                         <div class="text-center">
+                                             <div class="w-4 h-4 bg-red-500 rounded-full mx-auto mb-2"></div>
+                                             <span class="text-sm font-medium text-red-600">人类控制</span>
+                                         </div>
+                                         <div class="text-center">
+                                             <div class="w-4 h-4 bg-orange-500 rounded-full mx-auto mb-2"></div>
+                                             <span class="text-sm font-medium text-orange-600">部分自主</span>
+                                         </div>
+                                         <div class="text-center">
+                                             <div class="w-4 h-4 bg-green-500 rounded-full mx-auto mb-2"></div>
+                                             <span class="text-sm font-medium text-green-600">高度自主</span>
+                                         </div>
+                                     </div>
+                                     <div class="h-2 bg-gradient-to-r from-red-500 via-orange-500 to-green-500 rounded-full"></div>
+                                 </div>
+                                 
+                                 <!-- 三大产品案例 -->
+                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                     <!-- Cursor -->
+                                     <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-md">
+                                         <div class="flex items-center mb-4">
+                                             <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
+                                                 <i class="fas fa-code text-white"></i>
+                                             </div>
+                                             <h5 class="text-lg font-semibold text-blue-700 dark:text-blue-300">Cursor</h5>
+                                         </div>
+                                         <div class="space-y-3">
+                                             <div class="flex items-center justify-between p-2 bg-red-50 dark:bg-red-900/20 rounded-lg">
+                                                 <span class="text-sm font-medium">Tab</span>
+                                                 <span class="text-xs px-2 py-1 bg-red-500 text-white rounded-full">L1</span>
+                                             </div>
+                                             <div class="flex items-center justify-between p-2 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                                                 <span class="text-sm font-medium">Cmd+K</span>
+                                                 <span class="text-xs px-2 py-1 bg-orange-500 text-white rounded-full">L2</span>
+                                             </div>
+                                             <div class="flex items-center justify-between p-2 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                                                 <span class="text-sm font-medium">Cmd+L</span>
+                                                 <span class="text-xs px-2 py-1 bg-orange-500 text-white rounded-full">L3</span>
+                                             </div>
+                                             <div class="flex items-center justify-between p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                 <span class="text-sm font-medium">Cmd+I Agent</span>
+                                                 <span class="text-xs px-2 py-1 bg-green-500 text-white rounded-full">L4</span>
+                                             </div>
+                                         </div>
+                                     </div>
                                      
-                                     subgraph Cursor
-                                         B1[Tab] --> B2[Cmd+K] 
-                                         B2 --> B3[Cmd+L]
-                                         B3 --> B4[Cmd+I Agent模式]
-                                     end
+                                     <!-- Perplexity -->
+                                     <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-md">
+                                         <div class="flex items-center mb-4">
+                                             <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3">
+                                                 <i class="fas fa-search text-white"></i>
+                                             </div>
+                                             <h5 class="text-lg font-semibold text-green-700 dark:text-green-300">Perplexity</h5>
+                                         </div>
+                                         <div class="space-y-3">
+                                             <div class="flex items-center justify-between p-2 bg-red-50 dark:bg-red-900/20 rounded-lg">
+                                                 <span class="text-sm font-medium">Search</span>
+                                                 <span class="text-xs px-2 py-1 bg-red-500 text-white rounded-full">L1</span>
+                                             </div>
+                                             <div class="flex items-center justify-between p-2 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                                                 <span class="text-sm font-medium">Research</span>
+                                                 <span class="text-xs px-2 py-1 bg-orange-500 text-white rounded-full">L2</span>
+                                             </div>
+                                             <div class="flex items-center justify-between p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                 <span class="text-sm font-medium">Deep Research</span>
+                                                 <span class="text-xs px-2 py-1 bg-green-500 text-white rounded-full">L3</span>
+                                             </div>
+                                         </div>
+                                     </div>
                                      
-                                     subgraph Perplexity
-                                         P1[Search] --> P2[Research]
-                                         P2 --> P3[Deep Research]
-                                     end
-                                     
-                                     subgraph Tesla
-                                         T1[Level 1] --> T2[Level 2]
-                                         T2 --> T3[Level 3]
-                                         T3 --> T4[Level 4]
-                                     end
-                                     
-                                     A --> B1
-                                     B --> B2
-                                     B --> P1
-                                     B --> T1
-                                     C --> B4
-                                     C --> P3
-                                     C --> T4
-                                     
-                                     style A fill:#ffebee,stroke:#d32f2f
-                                     style B fill:#fff3e0,stroke:#f57c00
-                                     style C fill:#e8f5e8,stroke:#388e3c
+                                     <!-- Tesla -->
+                                     <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-md">
+                                         <div class="flex items-center mb-4">
+                                             <div class="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
+                                                 <i class="fas fa-car text-white"></i>
+                                             </div>
+                                             <h5 class="text-lg font-semibold text-purple-700 dark:text-purple-300">Tesla</h5>
+                                         </div>
+                                         <div class="space-y-3">
+                                             <div class="flex items-center justify-between p-2 bg-red-50 dark:bg-red-900/20 rounded-lg">
+                                                 <span class="text-sm font-medium">Level 1</span>
+                                                 <span class="text-xs px-2 py-1 bg-red-500 text-white rounded-full">L1</span>
+                                             </div>
+                                             <div class="flex items-center justify-between p-2 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                                                 <span class="text-sm font-medium">Level 2</span>
+                                                 <span class="text-xs px-2 py-1 bg-orange-500 text-white rounded-full">L2</span>
+                                             </div>
+                                             <div class="flex items-center justify-between p-2 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                                                 <span class="text-sm font-medium">Level 3</span>
+                                                 <span class="text-xs px-2 py-1 bg-orange-500 text-white rounded-full">L3</span>
+                                             </div>
+                                             <div class="flex items-center justify-between p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                 <span class="text-sm font-medium">Level 4</span>
+                                                 <span class="text-xs px-2 py-1 bg-green-500 text-white rounded-full">L4</span>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
                              </div>
                          </div>
 
@@ -1390,32 +1592,105 @@
 
                                                  <!-- 信息消费者架构图 -->
                          <div class="mb-8">
-                             <div class="mermaid">
-                                 graph TB
-                                     subgraph System["数字信息系统"]
-                                         Data[数字信息/服务]
-                                     end
+                             <div class="bg-gradient-to-br from-slate-50 to-indigo-50 dark:from-slate-800 dark:to-indigo-900/20 p-8 rounded-xl border border-slate-200 dark:border-slate-700">
+                                 <!-- 标题 -->
+                                 <div class="text-center mb-8">
+                                     <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-2">数字信息消费者的新类别</h4>
+                                     <p class="text-sm text-slate-600 dark:text-slate-400">智能体：具有类人特性的计算机</p>
+                                 </div>
+                                 
+                                 <!-- 架构图 -->
+                                 <div class="space-y-8">
+                                     <!-- 数字信息系统 -->
+                                     <div class="text-center">
+                                         <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full shadow-lg mb-4">
+                                             <i class="fas fa-database text-white text-2xl"></i>
+                                         </div>
+                                         <h5 class="text-lg font-semibold text-blue-700 dark:text-blue-300 mb-2">数字信息系统</h5>
+                                         <p class="text-sm text-slate-600 dark:text-slate-400">数字信息/服务</p>
+                                     </div>
                                      
-                                     subgraph Traditional["传统消费者"]
-                                         Human[人类 - GUI界面]
-                                         Computer[计算机 - API接口]
-                                     end
+                                     <!-- 连接线 -->
+                                     <div class="flex justify-center">
+                                         <div class="w-px h-12 bg-gradient-to-b from-blue-500 to-slate-300"></div>
+                                     </div>
                                      
-                                     subgraph Emerging["新兴消费者"]
-                                         Agent[智能体 - 类人特性计算机]
-                                     end
+                                     <!-- 三类消费者 -->
+                                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                         <!-- 传统消费者1: 人类 -->
+                                         <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-md text-center">
+                                             <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                 <i class="fas fa-user text-green-600 text-2xl"></i>
+                                             </div>
+                                             <h6 class="text-lg font-semibold text-green-700 dark:text-green-300 mb-2">人类</h6>
+                                             <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">传统消费者</p>
+                                             <div class="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                 <div class="text-sm font-medium text-green-700 dark:text-green-300">GUI 界面</div>
+                                                 <div class="text-xs text-green-600 dark:text-green-400 mt-1">图形用户界面</div>
+                                             </div>
+                                         </div>
+                                         
+                                         <!-- 传统消费者2: 计算机 -->
+                                         <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-md text-center">
+                                             <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                 <i class="fas fa-server text-blue-600 text-2xl"></i>
+                                             </div>
+                                             <h6 class="text-lg font-semibold text-blue-700 dark:text-blue-300 mb-2">计算机</h6>
+                                             <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">传统消费者</p>
+                                             <div class="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                                                 <div class="text-sm font-medium text-blue-700 dark:text-blue-300">API 接口</div>
+                                                 <div class="text-xs text-blue-600 dark:text-blue-400 mt-1">应用程序接口</div>
+                                             </div>
+                                         </div>
+                                         
+                                         <!-- 新兴消费者: 智能体 -->
+                                         <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border-2 border-purple-300 dark:border-purple-600 shadow-lg text-center relative">
+                                             <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                                                 <span class="bg-purple-500 text-white text-xs px-3 py-1 rounded-full font-medium">新类别</span>
+                                             </div>
+                                             <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                 <i class="fas fa-robot text-purple-600 text-2xl"></i>
+                                             </div>
+                                             <h6 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">智能体</h6>
+                                             <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">新兴消费者</p>
+                                             <div class="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                                                 <div class="text-sm font-medium text-purple-700 dark:text-purple-300">AI 友好接口</div>
+                                                 <div class="text-xs text-purple-600 dark:text-purple-400 mt-1">具有类人特性的计算机</div>
+                                             </div>
+                                         </div>
+                                     </div>
                                      
-                                     Data --> Human
-                                     Data --> Computer
-                                     Data --> Agent
-                                     
-                                     Human --> GUI[图形用户界面]
-                                     Computer --> API[应用程序接口]
-                                     Agent --> AIInterface[AI友好接口]
-                                     
-                                     style Agent fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
-                                     style AIInterface fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-                                     style Data fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+                                     <!-- 特性对比 -->
+                                     <div class="mt-8 p-6 bg-slate-100 dark:bg-slate-800 rounded-xl">
+                                         <h6 class="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-4 text-center">核心特性对比</h6>
+                                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                             <div class="text-center">
+                                                 <div class="font-medium text-green-600 mb-2">人类特性</div>
+                                                 <div class="text-slate-600 dark:text-slate-400">
+                                                     <div>• 直觉理解</div>
+                                                     <div>• 创意思维</div>
+                                                     <div>• 情感交互</div>
+                                                 </div>
+                                             </div>
+                                             <div class="text-center">
+                                                 <div class="font-medium text-blue-600 mb-2">计算机特性</div>
+                                                 <div class="text-slate-600 dark:text-slate-400">
+                                                     <div>• 精确执行</div>
+                                                     <div>• 高速处理</div>
+                                                     <div>• 标准化接口</div>
+                                                 </div>
+                                             </div>
+                                             <div class="text-center">
+                                                 <div class="font-medium text-purple-600 mb-2">智能体特性</div>
+                                                 <div class="text-slate-600 dark:text-slate-400">
+                                                     <div>• 自然语言理解</div>
+                                                     <div>• 推理能力</div>
+                                                     <div>• 自主决策</div>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
                              </div>
                          </div>
 
@@ -1535,12 +1810,46 @@
                     <div class="card p-6 md:p-8 rounded-lg">
                         <h3 class="text-2xl font-semibold mb-4">1. 编程像拍照一样简单</h3>
                         <p class="muted mb-6">编程的本质正从指令式 (Imperative) 转向声明式 (Declarative)。</p>
-                        <div class="mermaid">
-                            graph LR
-                                A[软件 1.0<br/>Code → Compile → Run] --> B[软件 3.0<br/>Idea → Prompt → Validate → Deploy]
+                        <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                            <div class="flex items-center justify-center space-x-8">
+                                <!-- 软件 1.0 -->
+                                <div class="text-center">
+                                    <div class="w-20 h-20 bg-blue-500 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                                        <i class="fas fa-code text-white text-2xl"></i>
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-blue-700 dark:text-blue-300 mb-2">软件 1.0</h4>
+                                    <div class="text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                        <div>Code</div>
+                                        <div>↓</div>
+                                        <div>Compile</div>
+                                        <div>↓</div>
+                                        <div>Run</div>
+                                    </div>
+                                </div>
                                 
-                                style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-                                style B fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+                                <!-- 箭头 -->
+                                <div class="flex flex-col items-center">
+                                    <i class="fas fa-arrow-right text-3xl text-gradient-to-r from-blue-500 to-purple-500 mb-2"></i>
+                                    <span class="text-xs text-slate-500 font-medium">跨越式发展</span>
+                                </div>
+                                
+                                <!-- 软件 3.0 -->
+                                <div class="text-center">
+                                    <div class="w-20 h-20 bg-purple-500 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                                        <i class="fas fa-magic text-white text-2xl"></i>
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">软件 3.0</h4>
+                                    <div class="text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                        <div>Idea</div>
+                                        <div>↓</div>
+                                        <div>Prompt</div>
+                                        <div>↓</div>
+                                        <div>Validate</div>
+                                        <div>↓</div>
+                                        <div>Deploy</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                          <div class="mt-6 space-y-4">
                             <div><strong>抽象层次跃迁:</strong> LLM 成为更高层次的"编译器"。</div>
@@ -1552,30 +1861,98 @@
                     <div class="card p-6 md:p-8 rounded-lg">
                         <h3 class="text-2xl font-semibold mb-4">2. 需要为 Agent 构建世界</h3>
                         <p class="muted mb-6">真正的智能体需要一个可供其感知、交互和影响的"世界"。</p>
-                        <div class="mermaid">
-                            graph TD
-                                A[为 Agent 构建世界] --> B[统一的协议]
-                                A --> C[无缝的工具接入]
-                                A --> D[可信的身份系统]
-                                A --> E[持久化的记忆]
+                        <div class="bg-gradient-to-br from-slate-50 to-indigo-50 dark:from-slate-800 dark:to-indigo-900/20 p-8 rounded-xl border border-slate-200 dark:border-slate-700">
+                            <!-- 中心概念 -->
+                            <div class="text-center mb-8">
+                                <div class="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full shadow-lg mb-4">
+                                    <i class="fas fa-globe text-white text-2xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200">为 Agent 构建世界</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">智能体需要的四大基础设施</p>
+                            </div>
+                            
+                            <!-- 四大基础设施 -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- 统一的协议 -->
+                                <div class="group bg-white dark:bg-slate-800 p-6 rounded-xl border border-blue-200 dark:border-blue-700 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                            <i class="fas fa-link text-white text-xl"></i>
+                                        </div>
+                                        <h5 class="text-lg font-semibold text-blue-700 dark:text-blue-300">统一的协议</h5>
+                                    </div>
+                                    <div class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-dot-circle text-blue-500 mr-2 text-xs"></i>
+                                            <span>开放、标准化</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <i class="fas fa-dot-circle text-blue-500 mr-2 text-xs"></i>
+                                            <span>解耦 AI "大脑"与"身体"</span>
+                                        </div>
+                                    </div>
+                                </div>
                                 
-                                B --> B1[开放、标准化]
-                                B --> B2[解耦AI大脑与身体]
+                                <!-- 无缝的工具接入 -->
+                                <div class="group bg-white dark:bg-slate-800 p-6 rounded-xl border border-green-200 dark:border-green-700 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                            <i class="fas fa-tools text-white text-xl"></i>
+                                        </div>
+                                        <h5 class="text-lg font-semibold text-green-700 dark:text-green-300">无缝的工具接入</h5>
+                                    </div>
+                                    <div class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-dot-circle text-green-500 mr-2 text-xs"></i>
+                                            <span>调用外部 API/脚本</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <i class="fas fa-dot-circle text-green-500 mr-2 text-xs"></i>
+                                            <span>标准化描述、安全环境</span>
+                                        </div>
+                                    </div>
+                                </div>
                                 
-                                C --> C1[调用外部API/脚本]
-                                C --> C2[标准化描述、安全环境]
+                                <!-- 可信的身份系统 -->
+                                <div class="group bg-white dark:bg-slate-800 p-6 rounded-xl border border-orange-200 dark:border-orange-700 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                            <i class="fas fa-id-card text-white text-xl"></i>
+                                        </div>
+                                        <h5 class="text-lg font-semibold text-orange-700 dark:text-orange-300">可信的身份系统</h5>
+                                    </div>
+                                    <div class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-dot-circle text-orange-500 mr-2 text-xs"></i>
+                                            <span>代表用户执行操作</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <i class="fas fa-dot-circle text-orange-500 mr-2 text-xs"></i>
+                                            <span>可靠的 Auth 机制</span>
+                                        </div>
+                                    </div>
+                                </div>
                                 
-                                D --> D1[代表用户执行操作]
-                                D --> D2[可靠的Auth机制]
-                                
-                                E --> E1[存储/检索历史]
-                                E --> E2[实现个性化和持续学习]
-                                
-                                style A fill:#f9f9f9,stroke:#333,stroke-width:3px
-                                style B fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-                                style C fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
-                                style D fill:#fff3e0,stroke:#f57c00,stroke-width:2px
-                                style E fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+                                <!-- 持久化的记忆 -->
+                                <div class="group bg-white dark:bg-slate-800 p-6 rounded-xl border border-purple-200 dark:border-purple-700 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                            <i class="fas fa-database text-white text-xl"></i>
+                                        </div>
+                                        <h5 class="text-lg font-semibold text-purple-700 dark:text-purple-300">持久化的记忆</h5>
+                                    </div>
+                                    <div class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-dot-circle text-purple-500 mr-2 text-xs"></i>
+                                            <span>存储/检索历史</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <i class="fas fa-dot-circle text-purple-500 mr-2 text-xs"></i>
+                                            <span>实现个性化和持续学习</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1820,7 +2197,7 @@
         </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+
     <script>
         // --- 1. Dark/Light Mode Switcher ---
         const themeToggleBtn = document.getElementById('theme-toggle');
@@ -1858,15 +2235,6 @@
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             localStorage.setItem('color-theme', newTheme);
             applyTheme(newTheme);
-            
-            // Re-render Mermaid diagrams with new theme
-            setTimeout(() => {
-                document.querySelectorAll('.mermaid').forEach(el => {
-                    el.removeAttribute('data-processed');
-                    el.innerHTML = el.getAttribute('data-mermaid-content') || el.innerHTML;
-                });
-                initMermaid();
-            }, 100);
         };
 
         // Add event listeners for theme toggle buttons
@@ -1911,38 +2279,7 @@
             });
         });
         
-        // --- 4. Mermaid.js Initialization ---
-        const initMermaid = () => {
-             mermaid.initialize({
-                startOnLoad: false,
-                theme: currentTheme === 'dark' ? 'dark' : 'default',
-                fontFamily: "'Noto Sans SC', sans-serif",
-                logLevel: 'fatal',
-                securityLevel: 'loose',
-                flowchart: {
-                    useMaxWidth: true,
-                    htmlLabels: true,
-                    curve: 'basis'
-                },
-                sequence: {
-                    useMaxWidth: true,
-                    wrap: true
-                },
-                graph: {
-                    useMaxWidth: true,
-                    htmlLabels: true
-                }
-            });
-            mermaid.run();
-        };
-        
-        // Store original mermaid content for theme switching
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.mermaid').forEach(el => {
-                el.setAttribute('data-mermaid-content', el.innerHTML.trim());
-            });
-            initMermaid();
-        });
+        // --- 4. Smooth scrolling and animations ---
 
         // --- 5. Scroll Fade-in Animation ---
         const observerOptions = {
