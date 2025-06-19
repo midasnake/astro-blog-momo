@@ -1,0 +1,1976 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 行业趋势洞察 | 2024-06-18</title>
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0a0a0f;
+            --text-color: #ffffff;
+            --muted-text-color: #a0a0a0;
+            --border-color: #1a1a2e;
+            --card-bg: rgba(16, 16, 32, 0.8);
+            --accent-color: #00d4ff;
+            --accent-text: #000000;
+            --code-bg: #16213e;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-tech: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --glow-color: rgba(0, 212, 255, 0.3);
+            --surface-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .light {
+            --bg-color: #f8fafc;
+            --text-color: #1a202c;
+            --muted-text-color: #718096;
+            --border-color: #e2e8f0;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --accent-color: #2563eb;
+            --accent-text: #ffffff;
+            --code-bg: #edf2f7;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-tech: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --glow-color: rgba(37, 99, 235, 0.2);
+            --surface-color: rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 200, 255, 0.2) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .muted {
+            color: var(--muted-text-color);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--surface-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-color);
+        }
+        
+        .tag {
+            background: var(--gradient-tech);
+            color: var(--accent-text);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .tag:hover::before {
+            left: 100%;
+        }
+        
+        .code-block {
+             background-color: var(--code-bg);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .mermaid {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-section {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--glow-color);
+            filter: blur(100px);
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        .nav-sticky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-sticky.visible {
+            transform: translateY(0);
+        }
+
+        .section-divider {
+            height: 1px;
+            background: var(--gradient-tech);
+            margin: 4rem 0;
+            opacity: 0.3;
+        }
+
+        .stats-card {
+            background: var(--gradient-secondary);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .link-hover {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .link-hover:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+
+        .link-hover::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-tech);
+            transition: width 0.3s ease;
+        }
+
+        .link-hover:hover::after {
+            width: 100%;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .glow {
+            box-shadow: 0 0 20px var(--glow-color);
+        }
+
+        @media (max-width: 768px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="nav-sticky" id="nav-sticky">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-xl font-bold">AI 趋势洞察</div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#overview" class="link-hover">总览</a>
+                    <a href="#mcp" class="link-hover">MCP 技术</a>
+                    <a href="#reports" class="link-hover">报告精读</a>
+                    <a href="#karpathy" class="link-hover">Karpathy 演讲</a>
+                    <a href="#trends" class="link-hover">新兴趋势</a>
+                    <a href="#livestream" class="link-hover">直播案例</a>
+                </div>
+                <button id="theme-toggle-nav" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+
+        <header class="text-center mb-16 md:mb-24 fade-in hero-section">
+            <div class="relative">
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+                    AI 行业趋势洞察
+                </h1>
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div class="w-12 h-px bg-gradient-to-r from-transparent via-current to-transparent"></div>
+                    <p class="text-lg md:text-xl muted">2024-06-18</p>
+                    <div class="w-12 h-px bg-gradient-to-r from-transparent via-current to-transparent"></div>
+                </div>
+                <p class="text-lg muted max-w-2xl mx-auto">
+                    深度解析 AI 行业最新技术趋势、市场动态与未来机遇
+                </p>
+            </div>
+        </header>
+
+        <main class="space-y-20">
+
+            <!-- Section: 总览 -->
+            <section id="overview" class="fade-in">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">内容总览</h2>
+                    <p class="muted text-lg">本期报告涵盖一项核心技术、两份重磅报告、两个创新产品、一次深度演讲、两大趋势洞察和一场标杆直播</p>
+                </div>
+                <div class="tech-grid">
+                    <div class="card p-8 rounded-xl glow">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-cogs text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">一项技术</h3>
+                        </div>
+                        <p class="muted text-lg">MCP (Model Context Protocol)</p>
+                        <a href="#mcp" class="inline-block mt-4 text-sm link-hover">深入了解 →</a>
+                    </div>
+                    <div class="card p-8 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-chart-line text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">两份报告</h3>
+                        </div>
+                        <ul class="space-y-2 muted">
+                            <li class="flex items-center">
+                                <i class="fas fa-dot-circle text-xs mr-2 text-blue-400"></i>
+                                《Trends – Artificial Intelligence》by Mary Meeker
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-dot-circle text-xs mr-2 text-blue-400"></i>
+                                《2025年中AI共识》by 庄明浩
+                            </li>
+                        </ul>
+                        <a href="#reports" class="inline-block mt-4 text-sm link-hover">查看详情 →</a>
+                    </div>
+                    <div class="card p-8 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-rocket text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">两个产品</h3>
+                        </div>
+                        <ul class="space-y-2 muted">
+                            <li class="flex items-center">
+                                <i class="fas fa-dot-circle text-xs mr-2 text-purple-400"></i>
+                                <a href="https://skywork.ai/home" target="_blank" class="link-hover">天工智能体 (Skywork AI)</a>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-dot-circle text-xs mr-2 text-purple-400"></i>
+                                <a href="https://www.youware.com/" target="_blank" class="link-hover">Youware</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card p-8 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-microphone text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">一次演讲</h3>
+                        </div>
+                        <p class="muted">Karpathy：软件 3.0 与智能体的十年时代</p>
+                        <a href="#karpathy" class="inline-block mt-4 text-sm link-hover">深度解析 →</a>
+                    </div>
+                    <div class="card p-8 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-trending-up text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">两个趋势</h3>
+                        </div>
+                        <ul class="space-y-2 muted">
+                            <li class="flex items-center">
+                                <i class="fas fa-dot-circle text-xs mr-2 text-cyan-400"></i>
+                                编程像拍照一样简单
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-dot-circle text-xs mr-2 text-cyan-400"></i>
+                                需要为 Agent 构建世界
+                            </li>
+                        </ul>
+                        <a href="#trends" class="inline-block mt-4 text-sm link-hover">探索趋势 →</a>
+                    </div>
+                    <div class="card p-8 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-600 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-video text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">一场直播</h3>
+                        </div>
+                        <p class="muted">罗永浩数字人"百度优选"直播</p>
+                        <a href="#livestream" class="inline-block mt-4 text-sm link-hover">案例分析 →</a>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="section-divider"></div>
+
+            <!-- Section: MCP -->
+            <section id="mcp" class="fade-in">
+                <div class="text-center mb-16">
+                    <span class="tag rounded-full px-6 py-2 text-sm font-medium inline-block mb-6">🔧 核心技术</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">MCP (Model Context Protocol)</h2>
+                    <p class="text-xl max-w-3xl mx-auto muted mb-8">让 AI 应用的集成像插入 USB-C 接口一样简单、标准化</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="https://modelcontextprotocol.io/introduction" target="_blank" 
+                           class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105">
+                            <i class="fas fa-globe mr-2"></i>官方网站
+                        </a>
+                        <a href="https://a16z.com/a-deep-dive-into-mcp-and-the-future-of-ai-tooling/" target="_blank" 
+                           class="border border-current px-6 py-3 rounded-lg font-medium hover:bg-current hover:text-black transition-all duration-300">
+                            <i class="fas fa-chart-bar mr-2"></i>a16z 深度解读
+                        </a>
+                        <a href="https://www.dailydoseofds.com/p/visual-guide-to-model-context-protocol-mcp/" target="_blank" 
+                           class="bg-gradient-to-r from-green-500 to-teal-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105">
+                            <i class="fas fa-images mr-2"></i>可视化指南
+                        </a>
+                        <a href="https://patel-world.medium.com/mcp-the-usb-c-of-ai-applications-a95dc77fcbf8" target="_blank" 
+                           class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105">
+                            <i class="fab fa-medium mr-2"></i>Medium 详解
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card p-6 md:p-8 rounded-lg">
+                    <!-- MCP 架构图直接展示 -->
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-semibold mb-6 text-center">MCP 总体架构</h3>
+                        <div class="flex justify-center mb-4">
+                            <img src="https://miro.medium.com/v2/resize:fit:1400/0*HCnkXqCpEOkuwOuG.png" 
+                                 alt="MCP 总体架构图" 
+                                 class="max-w-full h-auto rounded-lg shadow-lg border border-slate-200 dark:border-slate-700"
+                                 style="max-height: 600px; object-fit: contain;">
+                        </div>
+                        <p class="text-sm text-center muted mb-6">MCP 分层架构：角色模型、协议层、传输层与生命周期管理</p>
+                    </div>
+
+                    <!-- MCP 六大能力原语模块动图 -->
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-semibold mb-6 text-center">六大能力原语模块</h3>
+                        <div class="flex justify-center mb-4">
+                            <img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4d25a162-5cc0-42cb-a7d9-a63a3210279a_1086x1280.gif" 
+                                 alt="MCP 六大能力原语模块交互演示" 
+                                 class="max-w-full h-auto rounded-lg shadow-lg border border-slate-200 dark:border-slate-700"
+                                 style="max-height: 500px; object-fit: contain;">
+                        </div>
+                        <p class="text-sm text-center muted mb-6">MCP 六大能力原语的交互式演示（Resources、Prompts、Tools、Sampling、Roots、Transports）</p>
+                    </div>
+
+                    <div class="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg">
+                        <p class="text-sm muted text-center">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            更多详细技术解析：
+                            <a href="https://dailydoseofds.substack.com/p/the-guide-to-model-context-protocol" target="_blank" class="link-hover font-medium">Daily Dose of DS 完整指南</a>
+                            |
+                            <a href="https://medium.com/@damienbenvenuto/anthropics-model-context-protocol-mcp-a-deep-dive-ba0c4c28bb55" target="_blank" class="link-hover font-medium">Medium 深度分析</a>
+                        </p>
+                    </div>
+
+                    
+                    <h3 class="text-2xl font-semibold mb-6 mt-12">详细技术说明</h3>
+                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+                            <h4 class="font-semibold mb-2 text-blue-600">Resources</h4>
+                            <p class="text-sm muted">将数据暴露为只读资源，支持文件、数据库记录、API 响应等</p>
+                        </div>
+                        <div class="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+                            <h4 class="font-semibold mb-2 text-purple-600">Prompts</h4>
+                            <p class="text-sm muted">提供可重用的提示模板和工作流，方便用户选择和复用</p>
+                        </div>
+                        <div class="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+                            <h4 class="font-semibold mb-2 text-green-600">Tools</h4>
+                            <p class="text-sm muted">提供可由 LLM 自动调用的动作，支持 JSON Schema 描述</p>
+                        </div>
+                        <div class="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+                            <h4 class="font-semibold mb-2 text-orange-600">Sampling</h4>
+                            <p class="text-sm muted">允许 Server 反向请求 Client 进行模型采样，支持人在回路</p>
+                        </div>
+                        <div class="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+                            <h4 class="font-semibold mb-2 text-red-600">Roots</h4>
+                            <p class="text-sm muted">告知 Server 需要关注的 URI 范围，作为工作边界</p>
+                        </div>
+                        <div class="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+                            <h4 class="font-semibold mb-2 text-cyan-600">Transports</h4>
+                            <p class="text-sm muted">实现可插拔的通信机制，支持 stdio 和 HTTP 等传输</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-semibold mb-6 mt-12">协同工作流程</h3>
+                    <div class="mermaid">
+                        sequenceDiagram
+                            participant C as Client
+                            participant H as Host
+                            participant S as Server
+                            
+                            H->>C: 启动客户端
+                            C->>S: initialize(能力)
+                            S-->>C: initialized(能力)
+                            Note over C,S: 握手完成, 开始通信
+                            
+                            loop 上下文供给
+                                S->>C: Resources/Roots
+                                S->>C: Prompts/Sampling
+                            end
+                            
+                            loop 动作执行
+                                C->>S: tools/call
+                                S-->>C: 执行结果
+                            end
+                            
+                            C->>S: close
+                            S-->>C: close
+                    </div>
+                </div>
+            </section>
+            
+            <div class="section-divider"></div>
+
+            <!-- Section: 报告精读 -->
+            <section id="reports" class="fade-in">
+                <div class="text-center mb-16">
+                     <span class="tag rounded-full px-6 py-2 text-sm font-medium inline-block mb-6">📊 深度报告</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">报告精读</h2>
+                    <p class="text-xl max-w-3xl mx-auto muted">两份权威报告深度解析 AI 行业现状与未来趋势</p>
+                </div>
+
+                <div class="space-y-12">
+                    <!-- 报告一：Mary Meeker -->
+                    <div class="card p-6 md:p-8 rounded-lg border-l-4 border-purple-500">
+                        <div class="flex items-start justify-between mb-6">
+                            <div>
+                                <h3 class="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                                    《Trends – Artificial Intelligence》
+                                </h3>
+                                <div class="flex items-center space-x-4 text-sm muted">
+                                    <span><i class="fas fa-user mr-1"></i>Mary Meeker</span>
+                                    <span><i class="fas fa-file-pdf mr-1"></i>340页</span>
+                                    <span><i class="fas fa-calendar mr-1"></i>2024年6月</span>
+                                    <span><i class="fas fa-star mr-1"></i>6年首发AI专题</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs text-purple-600 font-semibold mb-1">传奇分析师</div>
+                                <div class="text-xs muted">"互联网女王"</div>
+                            </div>
+                        </div>
+
+                        <!-- 作者权威性 -->
+                        <div class="mb-8 p-4 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg">
+                            <h4 class="font-semibold mb-2 text-purple-700 dark:text-purple-300">
+                                <i class="fas fa-crown mr-2"></i>作者权威性
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                <div class="flex items-center">
+                                    <i class="fas fa-chart-line text-purple-500 mr-2"></i>
+                                    <span>90年代精准研判 Amazon、Google</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-trophy text-purple-500 mr-2"></i>
+                                    <span>押中 Canva、Plaid 等独角兽</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-database text-purple-500 mr-2"></i>
+                                    <span>以海量数据捕捉技术拐点</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 核心金句 -->
+                        <div class="mb-8">
+                            <div class="text-center p-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl">
+                                <div class="text-2xl font-bold mb-2">💡 核心金句</div>
+                                <blockquote class="text-lg italic">
+                                    "AI 是所有行业的新底座，现在需布局'可上可下'的技术与业务栈以保持领先"
+                                </blockquote>
+                                <div class="text-sm mt-2 opacity-90">— Mary Meeker，340页数据论证</div>
+                            </div>
+                        </div>
+
+                        <!-- 八大核心趋势 -->
+                        <h4 class="text-2xl font-semibold mb-6 flex items-center">
+                            <i class="fas fa-trending-up text-purple-500 mr-3"></i>
+                            八大核心趋势深度解析
+                        </h4>
+                        
+                        <div class="space-y-4 mb-8">
+                            <!-- 趋势1 -->
+                            <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg hover:shadow-md transition-shadow">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center mb-2">
+                                            <span class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">1</span>
+                                            <h5 class="font-semibold text-lg">用户 & CapEx 爆发式增长</h5>
+                                        </div>
+                                        <div class="ml-11 space-y-2">
+                                            <div class="flex items-center text-sm">
+                                                <i class="fas fa-users text-red-500 mr-2"></i>
+                                                <span class="font-medium">ChatGPT MAU 23个月破 5.3亿</span>
+                                            </div>
+                                            <div class="flex items-center text-sm">
+                                                <i class="fas fa-dollar-sign text-red-500 mr-2"></i>
+                                                <span class="font-medium">美六大科企 2024 CapEx +63%</span>
+                                            </div>
+                                            <p class="text-sm muted">用户增长史无前例，企业资本支出激增投向AI基建</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 趋势2 -->
+                            <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg hover:shadow-md transition-shadow">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center mb-2">
+                                            <span class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">2</span>
+                                            <h5 class="font-semibold text-lg">技术加速、成本骤降</h5>
+                                        </div>
+                                        <div class="ml-11 space-y-2">
+                                            <div class="flex items-center text-sm">
+                                                <i class="fas fa-database text-orange-500 mr-2"></i>
+                                                <span class="font-medium">训练数据年复合增长 +250%</span>
+                                            </div>
+                                            <div class="flex items-center text-sm">
+                                                <i class="fas fa-bolt text-orange-500 mr-2"></i>
+                                                <span class="font-medium">推理token能耗 10年降 10⁵倍</span>
+                                            </div>
+                                            <p class="text-sm muted">技术迭代加速，成本曲线决定AI普及拐点</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 趋势3-8 简化展示 -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <span class="w-6 h-6 bg-yellow-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">3</span>
+                                        <h6 class="font-medium">性能提升 → 真实输出</h6>
+                                    </div>
+                                    <p class="text-sm muted">推理价格两年降 99.7%，GPT-4.5 图灵测试通过率显著提升</p>
+                                </div>
+                                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">4</span>
+                                        <h6 class="font-medium">生态全面渗透</h6>
+                                    </div>
+                                    <p class="text-sm muted">NVIDIA 开发者 4年增至 600万，FDA 已批准 223款 AI医疗设备</p>
+                                </div>
+                                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">5</span>
+                                        <h6 class="font-medium">劳动力结构重塑</h6>
+                                    </div>
+                                    <p class="text-sm muted">AI岗位需求远超传统IT，生成式AI技能成新标配</p>
+                                </div>
+                                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <span class="w-6 h-6 bg-indigo-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">6</span>
+                                        <h6 class="font-medium">竞争格局与估值</h6>
+                                    </div>
+                                    <p class="text-sm muted">OpenAI 估值/收入倍数高企，开源模型快速逼近闭源</p>
+                                </div>
+                                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <span class="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">7</span>
+                                        <h6 class="font-medium">货币化路径多元</h6>
+                                    </div>
+                                    <p class="text-sm muted">GPU/TPU硬件收入飙升，微软Copilot年营收>130亿美元</p>
+                                </div>
+                                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <span class="w-6 h-6 bg-pink-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">8</span>
+                                        <h6 class="font-medium">应用疆域扩张</h6>
+                                    </div>
+                                    <p class="text-sm muted">Waymo份额20个月增至27%，Starlink结合AI推动新增10亿网络用户</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 关键数据亮点 -->
+                        <div class="mb-8 p-6 bg-gradient-to-r from-slate-50 to-purple-50 dark:from-slate-800 dark:to-purple-900/20 rounded-xl">
+                            <h4 class="font-semibold mb-4 text-center">📊 关键数据亮点</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                <div>
+                                    <div class="text-2xl font-bold text-purple-600">340页</div>
+                                    <div class="text-xs muted">报告体量</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-blue-600">5.3亿</div>
+                                    <div class="text-xs muted">ChatGPT MAU</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-green-600">99.7%</div>
+                                    <div class="text-xs muted">推理价格降幅</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-orange-600">$2120亿</div>
+                                    <div class="text-xs muted">六大科企CapEx</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 三大核心结论 -->
+                        <div class="mb-8">
+                            <h4 class="font-semibold mb-4 flex items-center">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                                高管层三大核心结论
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+                                    <div class="w-6 h-6 bg-yellow-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3 mt-0.5">1</div>
+                                    <div>
+                                        <div class="font-medium">技术扩散史无前例</div>
+                                        <div class="text-sm muted">用户、开发者、GPU出货增速均超移动互联网浪潮</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                                    <div class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3 mt-0.5">2</div>
+                                    <div>
+                                        <div class="font-medium">成本曲线决定拐点</div>
+                                        <div class="text-sm muted">推理成本快速下行，使中型企业也能负担LLM服务</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                    <div class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3 mt-0.5">3</div>
+                                    <div>
+                                        <div class="font-medium">投资与基建升级</div>
+                                        <div class="text-sm muted">巨头CapEx冲向"GPU大基建"，重塑行业门槛与机会</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 flex flex-wrap gap-4">
+                            <a href="https://bsh-group.feishu.cn/wiki/JKLhwbApHiQ8oek8zyQc6Bfanoh" target="_blank" 
+                               class="bg-gradient-to-r from-purple-500 to-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105">
+                                <i class="fas fa-file-alt mr-2"></i>原始报告
+                            </a>
+                            <a href="https://www.youware.com/editor/7b962bc0-da28-4550-9d10-9c8532135d4c" target="_blank" 
+                               class="bg-blue-500 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105">
+                                <i class="fas fa-external-link-alt mr-2"></i>互动报告
+                            </a>
+                            <a href="https://www.bilibili.com/video/BV1nz7qzAELf/?vd_source=d436e27b4e286ce451d160597e5db1aa" target="_blank" 
+                               class="border border-purple-500 text-purple-500 px-6 py-3 rounded-lg font-medium hover:bg-purple-500 hover:text-white transition-all duration-300">
+                                <i class="fab fa-bilibili mr-2"></i>B站解读
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 报告二：庄明浩 -->
+                    <div class="card p-6 md:p-8 rounded-lg border-l-4 border-green-500">
+                        <div class="flex items-start justify-between mb-6">
+                            <div>
+                                <h3 class="text-3xl font-bold mb-2 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                                    《2025年中AI共识》
+                                </h3>
+                                <div class="flex items-center space-x-4 text-sm muted">
+                                    <span><i class="fas fa-user mr-1"></i>庄明浩</span>
+                                    <span><i class="fas fa-calendar mr-1"></i>2025年6月</span>
+                                    <span><i class="fas fa-building mr-1"></i>30+公司访谈</span>
+                                    <span><i class="fas fa-chart-bar mr-1"></i>200+案例分析</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs text-green-600 font-semibold mb-1">战略顾问</div>
+                                <div class="text-xs muted">《屠龙之术》主理人</div>
+                            </div>
+                        </div>
+
+                        <!-- 作者背景 -->
+                        <div class="mb-8 p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg">
+                            <h4 class="font-semibold mb-2 text-green-700 dark:text-green-300">
+                                <i class="fas fa-user-tie mr-2"></i>作者背景
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                <div class="flex items-center">
+                                    <i class="fas fa-briefcase text-green-500 mr-2"></i>
+                                    <span>前创投人、互联网战略顾问</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-podcast text-green-500 mr-2"></i>
+                                    <span>播客《屠龙之术》主理人</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-search text-green-500 mr-2"></i>
+                                    <span>持续跟踪中国科技趋势</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 核心金句 -->
+                        <div class="mb-8">
+                            <div class="text-center p-6 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl">
+                                <div class="text-2xl font-bold mb-2">🎯 核心洞察</div>
+                                <blockquote class="text-lg italic">
+                                    "2025上半年中国AI圈五大共识形成，企业需同步升级技术与运营，把握基建与协议层新机会"
+                                </blockquote>
+                                <div class="text-sm mt-2 opacity-90">— 庄明浩，基于30+公司深度访谈</div>
+                            </div>
+                        </div>
+                        
+                        <!-- 年中五大共识 -->
+                        <h4 class="text-2xl font-semibold mb-6 flex items-center">
+                            <i class="fas fa-handshake text-green-500 mr-3"></i>
+                            年中五大共识深度解析
+                        </h4>
+                        
+                        <div class="space-y-6 mb-8">
+                            <!-- 共识1：推理成标配 -->
+                            <div class="p-6 border border-slate-200 dark:border-slate-700 rounded-lg hover:shadow-md transition-shadow">
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">1</div>
+                                    <div class="flex-1">
+                                        <h5 class="font-bold text-lg mb-2">推理成标配</h5>
+                                        <p class="text-sm muted mb-3">推理模型成为基础设施，企业需建设自有/混合推理集群</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs">推理集群</span>
+                                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs">成本优化</span>
+                                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs">基础设施</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 共识2：Agent加速 -->
+                            <div class="p-6 border border-slate-200 dark:border-slate-700 rounded-lg hover:shadow-md transition-shadow">
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">2</div>
+                                    <div class="flex-1">
+                                        <h5 class="font-bold text-lg mb-2">Agent 加速</h5>
+                                        <p class="text-sm muted mb-3">任务时长翻倍加速，"任务时长"成为Agent价值衡量标准</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs">任务时长</span>
+                                            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs">效率提升</span>
+                                            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs">价值衡量</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 共识3：开源崛起 -->
+                            <div class="p-6 border border-slate-200 dark:border-slate-700 rounded-lg hover:shadow-md transition-shadow">
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">3</div>
+                                    <div class="flex-1">
+                                        <h5 class="font-bold text-lg mb-2">开源崛起</h5>
+                                        <p class="text-sm muted mb-3">DeepSeek V3等开源模型加速迭代，快速集成成为关键能力</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-xs">DeepSeek V3</span>
+                                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-xs">开源模型</span>
+                                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-xs">快速集成</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 共识4：浏览器争夺 -->
+                            <div class="p-6 border border-slate-200 dark:border-slate-700 rounded-lg hover:shadow-md transition-shadow">
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">4</div>
+                                    <div class="flex-1">
+                                        <h5 class="font-bold text-lg mb-2">浏览器争夺</h5>
+                                        <p class="text-sm muted mb-3">浏览器成为新的核心入口，高频入口争夺激烈</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs">核心入口</span>
+                                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs">高频场景</span>
+                                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs">用户交互</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 共识5：资本并购升温 -->
+                            <div class="p-6 border border-slate-200 dark:border-slate-700 rounded-lg hover:shadow-md transition-shadow">
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">5</div>
+                                    <div class="flex-1">
+                                        <h5 class="font-bold text-lg mb-2">资本并购升温</h5>
+                                        <p class="text-sm muted mb-3">2025上半年成并购"绝对大年"，ARR成估值核心指标</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-full text-xs">并购大年</span>
+                                            <span class="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-full text-xs">ARR驱动</span>
+                                            <span class="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-full text-xs">估值核心</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 四大模块概览 -->
+                        <div class="mb-8">
+                            <h4 class="font-semibold mb-4 flex items-center">
+                                <i class="fas fa-layer-group text-green-500 mr-2"></i>
+                                报告四大模块
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="p-4 bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-800 dark:to-blue-900/20 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-cogs text-blue-500 mr-2"></i>
+                                        <h6 class="font-medium">技术</h6>
+                                    </div>
+                                    <p class="text-sm muted">推理、Agent、开源模型加速迭代</p>
+                                </div>
+                                <div class="p-4 bg-gradient-to-r from-slate-50 to-green-50 dark:from-slate-800 dark:to-green-900/20 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-cube text-green-500 mr-2"></i>
+                                        <h6 class="font-medium">产品</h6>
+                                    </div>
+                                    <p class="text-sm muted">交互、运营、"看得见的结果"</p>
+                                </div>
+                                <div class="p-4 bg-gradient-to-r from-slate-50 to-purple-50 dark:from-slate-800 dark:to-purple-900/20 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-dollar-sign text-purple-500 mr-2"></i>
+                                        <h6 class="font-medium">资本</h6>
+                                    </div>
+                                    <p class="text-sm muted">ARR驱动并购，2025成并购大年</p>
+                                </div>
+                                <div class="p-4 bg-gradient-to-r from-slate-50 to-orange-50 dark:from-slate-800 dark:to-orange-900/20 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-server text-orange-500 mr-2"></i>
+                                        <h6 class="font-medium">基建</h6>
+                                    </div>
+                                    <p class="text-sm muted">GPU、协议层成早期创业高地</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 关键数据 -->
+                        <div class="mb-8 p-6 bg-gradient-to-r from-slate-50 to-green-50 dark:from-slate-800 dark:to-green-900/20 rounded-xl">
+                            <h4 class="font-semibold mb-4 text-center">📈 调研数据</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                <div>
+                                    <div class="text-2xl font-bold text-green-600">30+</div>
+                                    <div class="text-xs muted">公司访谈</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-blue-600">200+</div>
+                                    <div class="text-xs muted">案例分析</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-purple-600">5大</div>
+                                    <div class="text-xs muted">核心共识</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-orange-600">2025</div>
+                                    <div class="text-xs muted">并购大年</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 三大核心结论 -->
+                        <div class="mb-8">
+                            <h4 class="font-semibold mb-4 flex items-center">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                                三大核心结论
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                    <div class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3 mt-0.5">1</div>
+                                    <div>
+                                        <div class="font-medium">推理模型+Agent是标配</div>
+                                        <div class="text-sm muted">需建设自有/混合推理集群，用"任务时长"衡量Agent价值</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                                    <div class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3 mt-0.5">2</div>
+                                    <div>
+                                        <div class="font-medium">可见交互+开源加速重塑产品</div>
+                                        <div class="text-sm muted">浏览器等高频入口争夺激烈，需快速集成迭代开源模型</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                                    <div class="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3 mt-0.5">3</div>
+                                    <div>
+                                        <div class="font-medium">资本并购窗口打开</div>
+                                        <div class="text-sm muted">关注ARR驱动的并购机会，探索GPU/协议层等底座技术红利</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 flex flex-wrap gap-4">
+                            <a href="https://bsh-group.feishu.cn/wiki/MmJ5wXGMKirLh4kcEyKcLdgZn6f" target="_blank" 
+                               class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105">
+                                <i class="fas fa-file-alt mr-2"></i>查看原文
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="section-divider"></div>
+
+            <!-- Section: Karpathy 演讲深思 -->
+             <section id="karpathy" class="fade-in">
+                <div class="text-center mb-16">
+                    <span class="tag rounded-full px-6 py-2 text-sm font-medium inline-block mb-6">🎯 Karpathy 演讲</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">软件 3.0：我们身处智能体的十年时代</h2>
+                    <p class="text-xl max-w-3xl mx-auto muted">Andrej Karpathy 在 YC AI 创业营的重磅演讲解析</p>
+                </div>
+
+                <!-- 核心金句 -->
+                <div class="mb-12">
+                    <div class="text-center p-8 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl">
+                        <div class="text-3xl font-bold mb-4">💡 核心洞察</div>
+                        <blockquote class="text-2xl italic mb-4">
+                            "我们并非处于智能体之年，而是身处智能体的十年时代"
+                        </blockquote>
+                        <div class="text-lg opacity-90">— Andrej Karpathy，前特斯拉AI总监、OpenAI创始成员</div>
+                    </div>
+                </div>
+
+                                 <!-- 软件演进三阶段 -->
+                 <div class="mb-12">
+                     <h3 class="text-2xl font-semibold mb-6 text-center">软件演进的三个时代</h3>
+                     
+                     <!-- 演进时间线图 -->
+                     <div class="mb-8">
+                         <div class="mermaid">
+                             graph LR
+                                 A["🔧 软件 1.0<br/>代码编程时代<br/>Code → Compile → Run"] --> B["🧠 软件 2.0<br/>神经网络时代<br/>Data → Train → Model"]
+                                 B --> C["✨ 软件 3.0<br/>提示工程时代<br/>Idea → Prompt → Validate → Deploy"]
+                                 
+                                 style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+                                 style B fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+                                 style C fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+                         </div>
+                     </div>
+
+                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                         <div class="card p-6 rounded-lg border-l-4 border-blue-500">
+                             <div class="flex items-center mb-4">
+                                 <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-4">
+                                     <i class="fas fa-code text-blue-600 text-xl"></i>
+                                 </div>
+                                 <h4 class="text-xl font-semibold">软件 1.0</h4>
+                             </div>
+                             <div class="space-y-2 text-sm">
+                                 <div class="font-medium text-blue-600">代码编程时代</div>
+                                 <div class="muted">Code → Compile → Run</div>
+                                 <div class="muted">程序员手写每一行代码</div>
+                                 <div class="mt-3 p-2 bg-blue-50 dark:bg-blue-900/20 rounded text-xs">
+                                     <strong>特点：</strong>明确指令，完全可控
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="card p-6 rounded-lg border-l-4 border-green-500">
+                             <div class="flex items-center mb-4">
+                                 <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mr-4">
+                                     <i class="fas fa-brain text-green-600 text-xl"></i>
+                                 </div>
+                                 <h4 class="text-xl font-semibold">软件 2.0</h4>
+                             </div>
+                             <div class="space-y-2 text-sm">
+                                 <div class="font-medium text-green-600">神经网络时代</div>
+                                 <div class="muted">Data → Train → Model</div>
+                                 <div class="muted">在特斯拉逐步取代传统软件</div>
+                                 <div class="mt-3 p-2 bg-green-50 dark:bg-green-900/20 rounded text-xs">
+                                     <strong>特点：</strong>数据驱动，模式识别
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="card p-6 rounded-lg border-l-4 border-purple-500">
+                             <div class="flex items-center mb-4">
+                                 <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mr-4">
+                                     <i class="fas fa-magic text-purple-600 text-xl"></i>
+                                 </div>
+                                 <h4 class="text-xl font-semibold">软件 3.0</h4>
+                             </div>
+                             <div class="space-y-2 text-sm">
+                                 <div class="font-medium text-purple-600">提示工程时代</div>
+                                 <div class="muted">Idea → Prompt → Validate → Deploy</div>
+                                 <div class="muted">正在取代前两者，大量软件将被重写</div>
+                                 <div class="mt-3 p-2 bg-purple-50 dark:bg-purple-900/20 rounded text-xs">
+                                     <strong>特点：</strong>自然语言编程，意图驱动
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+
+                                 <!-- LLMs 的四重属性 -->
+                 <div class="mb-12">
+                     <h3 class="text-2xl font-semibold mb-6 text-center">重新定义 LLMs：四重属性并存</h3>
+                     
+                     <!-- LLMs 四重属性概览图 -->
+                     <div class="mb-8">
+                         <div class="mermaid">
+                             mindmap
+                               root((LLMs<br/>四重属性))
+                                 (🔌 公共基础设施)
+                                   巨额资本支出
+                                   同质化API
+                                   按量计费
+                                   稳定性要求
+                                 (🏭 晶圆厂特性)
+                                   深度技术树
+                                   算力对比
+                                   产业分工
+                                 (💻 操作系统)
+                                   复杂生态系统
+                                   内存空间类比
+                                   市场格局
+                                 (🖥️ 分时大型机)
+                                   历史回声
+                                   交互模式
+                                   逆向普及
+                         </div>
+                     </div>
+
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="card p-6 rounded-lg bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-800 dark:to-blue-900/20">
+                            <h4 class="text-xl font-semibold mb-4 flex items-center">
+                                <i class="fas fa-plug text-blue-500 mr-3"></i>
+                                公共基础设施
+                            </h4>
+                            <ul class="space-y-2 text-sm">
+                                <li>• 巨额资本支出（相当于建设电网）</li>
+                                <li>• 通过同质化API提供智能服务</li>
+                                <li>• 按量计费（每百万tokens收费）</li>
+                                <li>• 对稳定性要求极高</li>
+                            </ul>
+                        </div>
+                        <div class="card p-6 rounded-lg bg-gradient-to-br from-slate-50 to-green-50 dark:from-slate-800 dark:to-green-900/20">
+                            <h4 class="text-xl font-semibold mb-4 flex items-center">
+                                <i class="fas fa-microchip text-green-500 mr-3"></i>
+                                晶圆厂特性
+                            </h4>
+                            <ul class="space-y-2 text-sm">
+                                <li>• 深度技术树研发与技术机密</li>
+                                <li>• 4纳米工艺 ≈ 10²⁰次浮点运算集群</li>
+                                <li>• 使用英伟达GPU = 无晶圆厂</li>
+                                <li>• 谷歌TPU = 拥有晶圆厂</li>
+                            </ul>
+                        </div>
+                        <div class="card p-6 rounded-lg bg-gradient-to-br from-slate-50 to-purple-50 dark:from-slate-800 dark:to-purple-900/20">
+                            <h4 class="text-xl font-semibold mb-4 flex items-center">
+                                <i class="fas fa-desktop text-purple-500 mr-3"></i>
+                                操作系统
+                            </h4>
+                            <ul class="space-y-2 text-sm">
+                                <li>• 复杂软件生态系统，非简单商品</li>
+                                <li>• 系统/用户空间（提示空间 ≈ 内核/用户空间）</li>
+                                <li>• 闭源供应商（GPT/Claude ≈ Mac/Windows）</li>
+                                <li>• 开源生态（Llama ≈ Linux）</li>
+                            </ul>
+                        </div>
+                        <div class="card p-6 rounded-lg bg-gradient-to-br from-slate-50 to-orange-50 dark:from-slate-800 dark:to-orange-900/20">
+                            <h4 class="text-xl font-semibold mb-4 flex items-center">
+                                <i class="fas fa-server text-orange-500 mr-3"></i>
+                                分时大型机
+                            </h4>
+                            <ul class="space-y-2 text-sm">
+                                <li>• 类似早期分时操作系统</li>
+                                <li>• 远程运行并流式输出内容</li>
+                                <li>• 文本聊天 ≈ 终端界面</li>
+                                <li>• 消费者→企业→政府的逆向普及</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LLM 心理学 -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold mb-6 text-center">LLM 心理学：高智能与认知缺陷并存</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="card p-6 rounded-lg border-l-4 border-red-500">
+                            <h4 class="text-xl font-semibold mb-4 flex items-center">
+                                <i class="fas fa-chart-line text-red-500 mr-3"></i>
+                                锯齿状智能 (Jagged Intelligence)
+                            </h4>
+                            <div class="space-y-3 text-sm">
+                                <div class="p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
+                                    <div class="font-medium text-red-700 dark:text-red-300 mb-1">现象描述</div>
+                                    <div class="muted">既能解决高等数学问题，又会在"9.11和9.9哪个更大"这样的简单问题上栽跟头</div>
+                                </div>
+                                <div class="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+                                    <div class="font-medium text-yellow-700 dark:text-yellow-300 mb-1">根本问题</div>
+                                    <div class="muted">缺乏"认知自我知识"，需要更复杂的模型后训练方法</div>
+                                </div>
+                                <div class="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                                    <div class="font-medium text-blue-700 dark:text-blue-300 mb-1">应对策略</div>
+                                    <div class="muted">将LLM用于擅长的任务，注意锯齿状边缘，让人工参与其中</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card p-6 rounded-lg border-l-4 border-blue-500">
+                            <h4 class="text-xl font-semibold mb-4 flex items-center">
+                                <i class="fas fa-memory text-blue-500 mr-3"></i>
+                                顺行性遗忘症 (Anterograde Amnesia)
+                            </h4>
+                            <div class="space-y-3 text-sm">
+                                <div class="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                                    <div class="font-medium text-blue-700 dark:text-blue-300 mb-1">类比描述</div>
+                                    <div class="muted">像患有顺行性遗忘症的同事，只有短期记忆（上下文窗口）</div>
+                                </div>
+                                <div class="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                    <div class="font-medium text-green-700 dark:text-green-300 mb-1">解决方案</div>
+                                    <div class="muted">ChatGPT的记忆功能是未来可能性的原始实现</div>
+                                </div>
+                                <div class="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                                    <div class="font-medium text-purple-700 dark:text-purple-300 mb-1">新学习范式</div>
+                                    <div class="muted">系统提示学习：类似人类的显性知识记录和复用</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 自主性滑块设计 -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold mb-6 text-center">部分自主性设计：钢铁侠战衣模式</h3>
+                    <div class="space-y-6">
+                        <!-- 核心理念 -->
+                        <div class="p-6 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border-l-4 border-indigo-500">
+                            <h4 class="font-semibold mb-2 text-indigo-700 dark:text-indigo-300">钢铁侠战衣类比</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <div class="font-medium mb-1">增强 (Augmentation)</div>
+                                    <div class="muted">为用户提供力量、工具、传感器和信息</div>
+                                </div>
+                                <div>
+                                    <div class="font-medium mb-1">自主性 (Autonomy)</div>
+                                    <div class="muted">战衣有自己的想法，在没有提示的情况下采取行动</div>
+                                </div>
+                            </div>
+                        </div>
+
+                                                 <!-- 自主性滑块概念图 -->
+                         <div class="mb-8">
+                             <div class="mermaid">
+                                 graph TD
+                                     A[人类控制] --> B[部分自主]
+                                     B --> C[高度自主]
+                                     
+                                     B1[Cursor: Tab] --> B2[Cursor: Cmd+K] 
+                                     B2 --> B3[Cursor: Cmd+L]
+                                     B3 --> B4[Cursor: Cmd+I Agent模式]
+                                     
+                                     P1[Perplexity: Search] --> P2[Perplexity: Research]
+                                     P2 --> P3[Perplexity: Deep Research]
+                                     
+                                     T1[Tesla: Level 1] --> T2[Tesla: Level 2]
+                                     T2 --> T3[Tesla: Level 3]
+                                     T3 --> T4[Tesla: Level 4]
+                                     
+                                     A -.-> B1
+                                     B -.-> B2
+                                     B -.-> P1
+                                     B -.-> T1
+                                     C -.-> B4
+                                     C -.-> P3
+                                     C -.-> T4
+                                     
+                                     style A fill:#ffebee,stroke:#d32f2f
+                                     style B fill:#fff3e0,stroke:#f57c00
+                                     style C fill:#e8f5e8,stroke:#388e3c
+                             </div>
+                         </div>
+
+                         <!-- 三大自主性滑块案例 -->
+                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="card p-6 rounded-lg">
+                                <h4 class="text-lg font-semibold mb-4 flex items-center">
+                                    <i class="fas fa-code text-blue-500 mr-2"></i>
+                                    Cursor
+                                </h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center justify-between p-2 bg-slate-100 dark:bg-slate-800 rounded">
+                                        <span>Tab</span>
+                                        <span class="text-xs muted">自动补全</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 bg-slate-100 dark:bg-slate-800 rounded">
+                                        <span>Cmd+K</span>
+                                        <span class="text-xs muted">代码生成</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 bg-slate-100 dark:bg-slate-800 rounded">
+                                        <span>Cmd+L</span>
+                                        <span class="text-xs muted">对话模式</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 bg-blue-100 dark:bg-blue-900/30 rounded">
+                                        <span>Cmd+I</span>
+                                        <span class="text-xs font-medium text-blue-600">Agent模式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card p-6 rounded-lg">
+                                <h4 class="text-lg font-semibold mb-4 flex items-center">
+                                    <i class="fas fa-search text-green-500 mr-2"></i>
+                                    Perplexity
+                                </h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center justify-between p-2 bg-slate-100 dark:bg-slate-800 rounded">
+                                        <span>Search</span>
+                                        <span class="text-xs muted">基础搜索</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 bg-slate-100 dark:bg-slate-800 rounded">
+                                        <span>Research</span>
+                                        <span class="text-xs muted">深度研究</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 bg-green-100 dark:bg-green-900/30 rounded">
+                                        <span>Deep Research</span>
+                                        <span class="text-xs font-medium text-green-600">全自主</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card p-6 rounded-lg">
+                                <h4 class="text-lg font-semibold mb-4 flex items-center">
+                                    <i class="fas fa-car text-purple-500 mr-2"></i>
+                                    Tesla Autopilot
+                                </h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center justify-between p-2 bg-slate-100 dark:bg-slate-800 rounded">
+                                        <span>Level 1</span>
+                                        <span class="text-xs muted">车道保持</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 bg-slate-100 dark:bg-slate-800 rounded">
+                                        <span>Level 2</span>
+                                        <span class="text-xs muted">保持车距</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 bg-slate-100 dark:bg-slate-800 rounded">
+                                        <span>Level 3</span>
+                                        <span class="text-xs muted">路口选择</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 bg-purple-100 dark:bg-purple-900/30 rounded">
+                                        <span>Level 4</span>
+                                        <span class="text-xs font-medium text-purple-600">路口转弯</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 为智能体而构建 -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold mb-6 text-center">为智能体而构建：数字信息消费者的新类别</h3>
+                    <div class="space-y-6">
+                        <!-- Demo vs 产品的差距 -->
+                        <div class="p-6 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border-l-4 border-yellow-500">
+                            <h4 class="font-semibold mb-3 text-yellow-700 dark:text-yellow-300">
+                                <i class="fas fa-exclamation-triangle mr-2"></i>
+                                Demo 与产品的巨大差距
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <div class="font-medium mb-2">演示原型 (Demo)</div>
+                                    <div class="p-3 bg-red-100 dark:bg-red-900/30 rounded">
+                                        <code>works.any()</code> - 有时能工作
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-medium mb-2">可靠产品 (Product)</div>
+                                    <div class="p-3 bg-green-100 dark:bg-green-900/30 rounded">
+                                        <code>works.all()</code> - 始终能工作
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                                                 <!-- 信息消费者架构图 -->
+                         <div class="mb-8">
+                             <div class="mermaid">
+                                 graph TB
+                                     subgraph "数字信息系统"
+                                         Data[数字信息/服务]
+                                     end
+                                     
+                                     subgraph "传统消费者"
+                                         Human[👤 人类<br/>GUI 界面]
+                                         Computer[💻 计算机<br/>API 接口]
+                                     end
+                                     
+                                     subgraph "新兴消费者"
+                                         Agent[🤖 智能体<br/>具有类人特性的计算机]
+                                     end
+                                     
+                                     Data --> Human
+                                     Data --> Computer
+                                     Data --> Agent
+                                     
+                                     Human -.-> |需要| GUI[图形用户界面]
+                                     Computer -.-> |需要| API[应用程序接口]
+                                     Agent -.-> |需要| AIInterface[AI友好接口<br/>curl命令、结构化数据]
+                                     
+                                     style Agent fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+                                     style AIInterface fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+                             </div>
+                         </div>
+
+                         <!-- 三类信息消费者 -->
+                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="card p-6 rounded-lg text-center">
+                                <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-user text-blue-600 text-2xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold mb-2">人类</h4>
+                                <div class="text-sm muted">图形用户界面 (GUI)</div>
+                            </div>
+                            <div class="card p-6 rounded-lg text-center">
+                                <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-server text-green-600 text-2xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold mb-2">计算机</h4>
+                                <div class="text-sm muted">应用程序接口 (API)</div>
+                            </div>
+                            <div class="card p-6 rounded-lg text-center border-2 border-purple-500">
+                                <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-robot text-purple-600 text-2xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold mb-2 text-purple-600">智能体</h4>
+                                <div class="text-sm text-purple-600 font-medium">新类别：具有类人特性的计算机</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                                 <!-- 关键数据统计 -->
+                 <div class="mb-8">
+                     <h3 class="text-2xl font-semibold mb-6 text-center">演讲关键数据</h3>
+                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                         <div class="card p-6 rounded-lg text-center">
+                             <div class="text-3xl font-bold text-blue-600 mb-2">3</div>
+                             <div class="text-sm muted">软件发展时代</div>
+                         </div>
+                         <div class="card p-6 rounded-lg text-center">
+                             <div class="text-3xl font-bold text-green-600 mb-2">4</div>
+                             <div class="text-sm muted">LLMs 重属性</div>
+                         </div>
+                         <div class="card p-6 rounded-lg text-center">
+                             <div class="text-3xl font-bold text-purple-600 mb-2">2014</div>
+                             <div class="text-sm muted">Waymo 原型车体验年</div>
+                         </div>
+                         <div class="card p-6 rounded-lg text-center">
+                             <div class="text-3xl font-bold text-orange-600 mb-2">10²⁰</div>
+                             <div class="text-sm muted">次浮点运算集群</div>
+                         </div>
+                     </div>
+                 </div>
+
+                 <!-- 核心总结 -->
+                 <div class="p-8 bg-gradient-to-r from-slate-800 to-indigo-900 text-white rounded-xl text-center">
+                     <h3 class="text-2xl font-bold mb-6">Karpathy 的行动指南</h3>
+                     
+                     <!-- 核心理念 -->
+                     <div class="mb-6 p-4 bg-white/10 rounded-lg">
+                         <blockquote class="text-lg italic mb-2">
+                             "软件 3.0 正在吞噬软件 1/2"
+                         </blockquote>
+                         <div class="text-sm opacity-80">改进生成器-验证器循环，为智能体而构建</div>
+                     </div>
+
+                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                         <div class="p-4 bg-red-500/20 rounded-lg">
+                             <div class="text-lg font-semibold mb-3 flex items-center justify-center">
+                                 <i class="fas fa-times-circle mr-2"></i>
+                                 少做
+                             </div>
+                             <div class="space-y-2">
+                                 <div>• 谈论2027年AGI</div>
+                                 <div>• 华而不实的演示</div>
+                                 <div>• 过度承诺功能</div>
+                             </div>
+                         </div>
+                         <div class="p-4 bg-green-500/20 rounded-lg">
+                             <div class="text-lg font-semibold mb-3 flex items-center justify-center">
+                                 <i class="fas fa-check-circle mr-2"></i>
+                                 多做
+                             </div>
+                             <div class="space-y-2">
+                                 <div>• 部分自主功能</div>
+                                 <div>• 自定义GUI</div>
+                                 <div>• 自主程度调节滑块</div>
+                                 <div>• 快速迭代验证</div>
+                             </div>
+                         </div>
+                         <div class="p-4 bg-blue-500/20 rounded-lg">
+                             <div class="text-lg font-semibold mb-3 flex items-center justify-center">
+                                 <i class="fas fa-bullseye mr-2"></i>
+                                 核心
+                             </div>
+                             <div class="space-y-2">
+                                 <div>• 改进生成器-验证器循环</div>
+                                 <div>• 为智能体而构建</div>
+                                 <div>• 钢铁侠战衣模式</div>
+                                 <div>• works.all() > works.any()</div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+            </section>
+            
+            <div class="section-divider"></div>
+
+            <!-- Section: 新兴趋势 -->
+            <section id="trends" class="fade-in">
+                <div class="text-center mb-16">
+                    <span class="tag rounded-full px-6 py-2 text-sm font-medium inline-block mb-6">🚀 未来趋势</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">新兴趋势</h2>
+                    <p class="text-xl max-w-3xl mx-auto muted">探索 AI 技术发展的两大核心趋势与未来方向</p>
+                </div>
+                
+                <div class="space-y-12">
+                    <div class="card p-6 md:p-8 rounded-lg">
+                        <h3 class="text-2xl font-semibold mb-4">1. 编程像拍照一样简单</h3>
+                        <p class="muted mb-6">编程的本质正从指令式 (Imperative) 转向声明式 (Declarative)。</p>
+                        <div class="mermaid">
+                            graph LR
+                                A[软件 1.0 <br> Code -> Compile -> Run] --> B[软件 3.0 <br> Idea -> Prompt -> Validate -> Deploy]
+                        </div>
+                         <div class="mt-6 space-y-4">
+                            <div><strong>抽象层次跃迁:</strong> LLM 成为更高层次的"编译器"。</div>
+                            <div><strong>开发范式演进:</strong> 核心技能转向系统设计、意图表达和结果验证。</div>
+                            <div><strong>工具链重塑:</strong> IDE 将原生集成 Agentic 能力。</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-6 md:p-8 rounded-lg">
+                        <h3 class="text-2xl font-semibold mb-4">2. 需要为 Agent 构建世界</h3>
+                        <p class="muted mb-6">真正的智能体需要一个可供其感知、交互和影响的"世界"。</p>
+                        <div class="mermaid">
+                             mindmap
+                              root((为 Agent 构建世界))
+                                ::icon(fa fa-globe)
+                                (统一的协议)
+                                  ::icon(fa fa-link)
+                                  开放、标准化
+                                  解耦 AI "大脑"与"身体"
+                                (无缝的工具接入)
+                                  ::icon(fa fa-tools)
+                                  调用外部 API/脚本
+                                  标准化描述、安全环境
+                                (可信的身份系统)
+                                  ::icon(fa fa-id-card)
+                                  代表用户执行操作
+                                  可靠的 Auth 机制
+                                (持久化的记忆)
+                                  ::icon(fa fa-database)
+                                  存储/检索历史
+                                  实现个性化和持续学习
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="section-divider"></div>
+
+            <!-- Section: 直播剖析 -->
+            <section id="livestream" class="fade-in">
+                <div class="text-center mb-16">
+                    <span class="tag rounded-full px-6 py-2 text-sm font-medium inline-block mb-6">🎯 案例分析</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">罗永浩数字人直播案例</h2>
+                    <p class="text-xl max-w-3xl mx-auto muted">深度剖析 5500 万 GMV 背后的 AI 技术与商业逻辑</p>
+                </div>
+                
+                <!-- 商业成果统计 -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold mb-6 text-center">商业成果突破</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                        <div class="card p-6 rounded-lg border border-slate-200 dark:border-slate-700">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-chart-line text-red-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-red-600">5500万</div>
+                                    <div class="text-sm muted">GMV (元)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card p-6 rounded-lg border border-slate-200 dark:border-slate-700">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-eye text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-blue-600">1300万</div>
+                                    <div class="text-sm muted">观看人次</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card p-6 rounded-lg border border-slate-200 dark:border-slate-700">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-clock text-green-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-green-600">7小时</div>
+                                    <div class="text-sm muted">直播时长</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card p-6 rounded-lg border border-slate-200 dark:border-slate-700">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-rocket text-orange-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-orange-600">26分钟</div>
+                                    <div class="text-sm muted">超越真人</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg border-l-4 border-blue-500">
+                        <p class="text-sm">
+                            <strong class="text-blue-600">效率突破：</strong>开播仅26分钟，GMV就超过了罗永浩真人直播1小时的带货金额，标志着AI数字人技术正式迈入产业赋能阶段。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 技术深度解析 -->
+                <div class="mb-12">
+                    <div class="card p-6 md:p-8 rounded-lg">
+                         <h3 class="text-2xl font-semibold mb-6 text-center">技术深度解析</h3>
+                         <p class="text-center muted mb-8">百度慧播星技术四大核心突破</p>
+                         
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <!-- 双人协同对话 -->
+                            <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-800 dark:to-blue-900/20">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-comments text-blue-600 text-xl"></i>
+                                    </div>
+                                    <h4 class="text-xl font-semibold">双人协同对话</h4>
+                                </div>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-500 mr-2 mt-1 text-xs"></i>
+                                        <span>对话上下文编码器统一处理历史和当前话语</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-500 mr-2 mt-1 text-xs"></i>
+                                        <span>多智能体协同，支持实时互动打断</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-500 mr-2 mt-1 text-xs"></i>
+                                        <span>业内首次双数字人同台直播</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- 深度复刻人设 -->
+                            <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-purple-50 dark:from-slate-800 dark:to-purple-900/20">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-user-astronaut text-purple-600 text-xl"></i>
+                                    </div>
+                                    <h4 class="text-xl font-semibold">深度复刻人设</h4>
+                                </div>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-500 mr-2 mt-1 text-xs"></i>
+                                        <span>文心大模型 4.5 Turbo 驱动</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-500 mr-2 mt-1 text-xs"></i>
+                                        <span>成功复制"罗氏幽默"和语言节奏</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-500 mr-2 mt-1 text-xs"></i>
+                                        <span>AI 创作结合商品信息和热点话题</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- 多模态融合驱动 -->
+                            <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-green-50 dark:from-slate-800 dark:to-green-900/20">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-hand-paper text-green-600 text-xl"></i>
+                                    </div>
+                                    <h4 class="text-xl font-semibold">多模态融合驱动</h4>
+                                </div>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                                        <span>语言、微表情、肢体动作无缝协调</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                                        <span>实现"言行一致"的超写实效果</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                                        <span>完成超 8300 个协调动作</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- AI 大脑实时场控 -->
+                            <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-orange-50 dark:from-slate-800 dark:to-orange-900/20">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-brain text-orange-600 text-xl"></i>
+                                    </div>
+                                    <h4 class="text-xl font-semibold">AI 大脑实时场控</h4>
+                                </div>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-orange-500 mr-2 mt-1 text-xs"></i>
+                                        <span>总控 AI 基于直播间信号实时调度</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-orange-500 mr-2 mt-1 text-xs"></i>
+                                        <span>主动引导评论、抽奖、福袋互动</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-orange-500 mr-2 mt-1 text-xs"></i>
+                                        <span>调用知识库 1.3 万次，生成 9.7 万字内容</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 技术成果汇总 -->
+                        <div class="p-6 bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-xl border border-slate-200 dark:border-slate-700">
+                            <h4 class="text-lg font-semibold mb-4 text-center">技术成果汇总</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-blue-600">7小时</div>
+                                    <div class="muted">直播时长</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-green-600">8300+</div>
+                                    <div class="muted">协调动作</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-purple-600">1.3万次</div>
+                                    <div class="muted">知识库调用</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-orange-600">9.7万字</div>
+                                    <div class="muted">内容生成</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                 
+                 </div>
+
+                <!-- 商业影响与行业变革 -->
+                <div class="card p-6 md:p-8 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-6">商业影响与行业变革</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-semibold mb-2 text-blue-600">成本革命</h4>
+                            <p class="text-sm muted">单个数字人月使用成本控制在千元级别，远低于真人主播，支持7x24小时直播</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-semibold mb-2 text-purple-600">模式验证</h4>
+                            <p class="text-sm muted">验证了"技术+IP"协同模式，为直播行业提供智能化转型的实践样本</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-semibold mb-2 text-green-600">未来展望</h4>
+                            <p class="text-sm muted">百度计划3-6个月内市场化该能力，推动"人人可播"的AI时代</p>
+                        </div>
+                    </div>
+                </div>
+                 
+                 <div class="mt-8 text-center">
+                     <a href="https://x.com/Baidu_Inc/status/1935352915407090168" target="_blank" 
+                        class="inline-flex items-center bg-blue-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors">
+                         <i class="fab fa-twitter mr-2"></i>百度官方 Twitter 发布
+                     </a>
+                 </div>
+
+            </section>
+
+        </main>
+
+        <footer class="mt-20 text-center muted border-t border-gray-200 dark:border-gray-800 pt-8 fade-in">
+             <div class="flex justify-center mb-4">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <svg id="theme-toggle-dark-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+            <p>&copy; 2024 AI Trends Digest. 由 Gemini 2.5 Pro 生成。</p>
+            <p class="text-sm mt-1">此内容仅供参考，请以原始报告为准。</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        // --- 1. Dark/Light Mode Switcher ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleNavBtn = document.getElementById('theme-toggle-nav');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+        let currentTheme;
+
+        // Function to update theme
+        const applyTheme = (theme) => {
+            currentTheme = theme;
+            if (theme === 'dark') {
+                document.documentElement.classList.remove('light');
+                document.documentElement.classList.add('dark');
+                darkIcon?.classList.remove('hidden');
+                lightIcon?.classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                darkIcon?.classList.add('hidden');
+                lightIcon?.classList.remove('hidden');
+            }
+        };
+
+        // Initialize theme on load (default to dark for sci-fi feel)
+        if (localStorage.getItem('color-theme') === 'light') {
+            applyTheme('light');
+        } else {
+            applyTheme('dark');
+            localStorage.setItem('color-theme', 'dark');
+        }
+
+        // Toggle theme function
+        const toggleTheme = () => {
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('color-theme', newTheme);
+            applyTheme(newTheme);
+            
+            // Re-render Mermaid diagrams with new theme
+            setTimeout(() => {
+                document.querySelectorAll('.mermaid').forEach(el => {
+                    el.removeAttribute('data-processed');
+                    el.innerHTML = el.getAttribute('data-mermaid-content') || el.innerHTML;
+                });
+                initMermaid();
+            }, 100);
+        };
+
+        // Add event listeners for theme toggle buttons
+        themeToggleBtn?.addEventListener('click', toggleTheme);
+        themeToggleNavBtn?.addEventListener('click', toggleTheme);
+
+        // --- 2. Sticky Navigation ---
+        const navSticky = document.getElementById('nav-sticky');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            
+            // Show nav when scrolling up or near top, hide when scrolling down
+            if (currentScrollY < lastScrollY || currentScrollY < 200) {
+                navSticky?.classList.add('visible');
+            } else {
+                navSticky?.classList.remove('visible');
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // --- 3. Smooth scrolling for navigation links ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 100; // Account for sticky nav
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // --- 4. Mermaid.js Initialization ---
+        const initMermaid = () => {
+             mermaid.initialize({
+                startOnLoad: false,
+                theme: currentTheme === 'dark' ? 'dark' : 'default',
+                fontFamily: "'Noto Sans SC', sans-serif",
+                logLevel: 'fatal',
+                securityLevel: 'loose',
+                flowchart: {
+                    useMaxWidth: true,
+                    htmlLabels: true,
+                },
+                sequence: {
+                    useMaxWidth: true,
+                },
+                mindmap: {
+                    useMaxWidth: true,
+                }
+            });
+            mermaid.run();
+        };
+        
+        // Store original mermaid content for theme switching
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.mermaid').forEach(el => {
+                el.setAttribute('data-mermaid-content', el.innerHTML.trim());
+            });
+            initMermaid();
+        });
+
+        // --- 5. Scroll Fade-in Animation ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // --- 6. Initialize animations and effects ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe fade-in elements
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach((el, index) => {
+                el.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(el);
+            });
+            
+            // Add interactive effects to cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Add pulse effect to glow elements
+            const glowElements = document.querySelectorAll('.glow');
+            glowElements.forEach(el => {
+                el.classList.add('pulse');
+            });
+        });
+
+        // --- 7. Add external link indicators ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const externalLinks = document.querySelectorAll('a[target="_blank"]');
+            externalLinks.forEach(link => {
+                if (!link.querySelector('i')) {
+                    link.innerHTML += ' <i class="fas fa-external-link-alt text-xs ml-1 opacity-70"></i>';
+                }
+            });
+        });
+
+    </script>
+</body>
+</html> 
